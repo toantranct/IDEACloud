@@ -72,8 +72,8 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `username` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL CHECK (`email` like '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$'),
-  `SDT` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL CHECK (`SDT` like '0[35789]\\d{8}$'),
+  `email` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL CHECK (`email` REGEXP '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$'),
+  `SDT` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL CHECK (`SDT` REGEXP '0[35789]\\d{8}$'),
   `status` tinyint(1) DEFAULT NULL,
   `code` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `authorize` tinyint(1) DEFAULT NULL
