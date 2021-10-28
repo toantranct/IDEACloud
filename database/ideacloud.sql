@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2021 lúc 04:13 AM
+-- Thời gian đã tạo: Th10 28, 2021 lúc 06:43 AM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.8
 
@@ -48,7 +48,8 @@ CREATE TABLE `docs` (
 
 CREATE TABLE `doc_groups` (
   `group_ID` int(11) NOT NULL,
-  `group_name` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL
+  `group_name` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
+  `parent` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
@@ -106,7 +107,8 @@ ALTER TABLE `docs`
 -- Chỉ mục cho bảng `doc_groups`
 --
 ALTER TABLE `doc_groups`
-  ADD PRIMARY KEY (`group_ID`);
+  ADD PRIMARY KEY (`group_ID`),
+  ADD KEY `parent` (`parent`);
 
 --
 -- Chỉ mục cho bảng `group_detail`
@@ -151,14 +153,20 @@ ALTER TABLE `users`
 -- Các ràng buộc cho bảng `docs`
 --
 ALTER TABLE `docs`
-  ADD CONSTRAINT `docs_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `docs_ibfk_2` FOREIGN KEY (`user_ID`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `doc_groups`
+--
+ALTER TABLE `doc_groups`
+  ADD CONSTRAINT `doc_groups_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `doc_groups` (`group_ID`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `group_detail`
 --
 ALTER TABLE `group_detail`
-  ADD CONSTRAINT `group_detail_ibfk_1` FOREIGN KEY (`doc_ID`) REFERENCES `docs` (`doc_ID`),
-  ADD CONSTRAINT `group_detail_ibfk_2` FOREIGN KEY (`group_ID`) REFERENCES `doc_groups` (`group_ID`);
+  ADD CONSTRAINT `group_detail_ibfk_3` FOREIGN KEY (`doc_ID`) REFERENCES `docs` (`doc_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `group_detail_ibfk_4` FOREIGN KEY (`group_ID`) REFERENCES `doc_groups` (`group_ID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
