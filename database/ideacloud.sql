@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2021 lúc 06:43 AM
--- Phiên bản máy phục vụ: 10.4.20-MariaDB
--- Phiên bản PHP: 8.0.8
+-- Thời gian đã tạo: Th10 29, 2021 lúc 04:51 AM
+-- Phiên bản máy phục vụ: 10.4.21-MariaDB
+-- Phiên bản PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,6 +40,15 @@ CREATE TABLE `docs` (
   `user_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `docs`
+--
+
+INSERT INTO `docs` (`doc_ID`, `doc_name`, `doc_author`, `doc_date`, `description`, `visibility`, `type_file`, `type`, `filename`, `user_ID`) VALUES
+(1, 'Tài liệu 1', 'Tác giả 1', '2001-08-21', 'Mô tả 1, test', 0, 'docx', 1, 'Filename1.docx', 2),
+(2, 'Tài liệu 2', 'Tác giả 2', '2001-08-21', 'Mô tả 2, test', 0, 'xlsx', 0, 'Filename2.xlsx', 4),
+(3, 'Tài liệu 3', 'Tác giả 3', '2001-08-21', 'Mô tả 3, test', 0, 'pdf', 0, 'Filename3.pdf', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +61,16 @@ CREATE TABLE `doc_groups` (
   `parent` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `doc_groups`
+--
+
+INSERT INTO `doc_groups` (`group_ID`, `group_name`, `parent`) VALUES
+(9, 'Tài liệu CIA', NULL),
+(10, 'Tài liệu NSA', NULL),
+(11, 'Tài liệu FBI', NULL),
+(12, 'Tài liệu DEA', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +81,16 @@ CREATE TABLE `group_detail` (
   `doc_ID` int(11) DEFAULT NULL,
   `group_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `group_detail`
+--
+
+INSERT INTO `group_detail` (`doc_ID`, `group_ID`) VALUES
+(1, 9),
+(1, 10),
+(2, 12),
+(3, 11);
 
 -- --------------------------------------------------------
 
@@ -86,11 +115,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fullname`, `username`, `password`, `email`, `SDT`, `status`, `code`, `authorize`) VALUES
-(1, '', 'toantranct', '123456', 'mxhios@gmail.com', '', 0, NULL, NULL),
-(2, '', 'admin', 'admin', 'admin@gmail.com', '1234564', 1, NULL, 1),
-(3, '', 'test', '123', 'test@gmail.com', '1234567', 0, NULL, 0),
-(4, '', 'user1', '123', 'user1@gmail.com', '965132132', 1, NULL, 0),
-(5, '', 'user2', '123', 'user2@gmail.com', '541652164', 1, NULL, 0);
+(1, 'Toản chim bé', 'toantranct', '123456', 'mxhios@gmail.com', '065413014', 0, NULL, NULL),
+(2, 'admin\'s fullname', 'admin', 'admin', 'admin@gmail.com', '1234564', 1, NULL, 1),
+(3, 'test\'s fullname', 'test', '123', 'test@gmail.com', '1234567', 0, NULL, 0),
+(4, 'user1\'s fullname', 'user1', '123', 'user1@gmail.com', '965132132', 1, NULL, 0),
+(5, 'user2\'s fullname', 'user2', '123', 'user2@gmail.com', '541652164', 1, NULL, 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -131,13 +160,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `docs`
 --
 ALTER TABLE `docs`
-  MODIFY `doc_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `doc_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `doc_groups`
 --
 ALTER TABLE `doc_groups`
-  MODIFY `group_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `group_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
