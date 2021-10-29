@@ -23,7 +23,7 @@
 
                                     <h2 class="fw-bold mb-2 text-uppercase">Đăng Nhập</h2>
                                     <br><br>
-                                    <form action="" method="POST" class="text-center">
+                                    <form action="process-login.php" method="POST" class="text-center">
                                         <div class="form-outline form-white mb-4">
                                             Tài khoản:
                                             <input type="text" id="username" name="username"
@@ -40,8 +40,7 @@
                                                 khẩu?</a>
                                         </p>
                                         <button class="btn btn-outline-primary btn-secondary text-white px-5"
-                                            type="submit">Đăng nhập</button>
-
+                                            type="submit" name="submit">Đăng nhập</button>
                                     </form>
                                     <br>
                                     <div>
