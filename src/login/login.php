@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div style="background-image: url('../img/nenlogin.jpg'); background-repeat: no-repeat">
+    <div style="background-image: url('../../img/nenlogin.jpg'); background-repeat: no-repeat">
         <section class="vh-100 gradient-custom">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,38 +22,39 @@
                                 <div class="mb-md-5 mt-md-4 pb-5">
 
                                     <h2 class="fw-bold mb-2 text-uppercase">Đăng Nhập</h2>
-                                    <p class="text-white-50 mb-5">Nhập tài khoản và mật khẩu!</p>
+                                    <br><br>
+                                    <form action="" method="POST" class="text-center">
+                                        <div class="form-outline form-white mb-4">
+                                            Tài khoản:
+                                            <input type="text" id="username" name="username"
+                                                class="form-control form-control-lg" />
+                                        </div>
 
-                                    <div class="form-outline form-white mb-4">
-                                        Tên người dùng:
-                                        <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                                        <div class="form-outline form-white mb-4">
+                                            Mật khẩu:
+                                            <input type="password" id="password" name="password"
+                                                class="form-control form-control-lg" />
+                                        </div>
+
+                                        <p class="small mb-5 pb-lg-2"><a class="text-secondary" href="#!">Quên mật
+                                                khẩu?</a>
+                                        </p>
+                                        <button class="btn btn-outline-primary btn-secondary text-white px-5"
+                                            type="submit">Đăng nhập</button>
+
+                                    </form>
+                                    <br>
+                                    <div>
+                                        <p class="mb-0">Bạn chưa có tài khoản? <a href="../register/register.php"
+                                                class="text-primary-50 fw-bold">Đăng Ký
+                                            </a></p>
                                     </div>
 
-                                    <div class="form-outline form-white mb-4">
-                                        Password:
-                                        <input type="password" id="typePasswordX"
-                                            class="form-control form-control-lg" />
-                                    </div>
-
-                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot
-                                            password?</a>
-                                    </p>
-
-                                    <button class="btn btn-outline-primary btn-secondary text-white px-5"
-                                        type="submit">Login</button>
                                 </div>
-
-                                <div>
-                                    <p class="mb-0">Don't have an account? <a href="dangky.php"
-                                            class="text-primary-50 fw-bold">Sign
-                                            Up</a></p>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     </div>
 </body>
