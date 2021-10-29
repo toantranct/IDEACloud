@@ -2,24 +2,19 @@
  define('HOST','localhost');
  define('USER','root');
  const PASS  = '';
- const DB    = 'tlu_phonebook'; 
+ const DB    = 'ideacloud'; 
  $conn = mysqli_connect(HOST,USER, PASS,DB);
  if(!$conn){
-     die('Không thể kết nối');
+     die('Không thể kết nối'.$conn->connect_error);
  }
- if(isset($_SESSION['manv']))
- {
-     echo $_SESSION['manv']; 
-     unset($_SESSION['manv']); 
- }
-    $manv = $_GET['manv'];
-    $sql = "DELETE FROM db_employees WHERE emp_id=$manv";
-    $res = mysqli_query($conn, $sql) or die(mysqli_error()) ;
+    $ID = $_GET['id'];
+    $sql = "DELETE FROM users WHERE user_id='$ID'";
+    $res = mysqli_query($conn, $sql);
     if($res==true)
-   {
+   {    
        header('location:MnUserDoc.php');
    }else
    {
-       echo"Xoá thất bại";
+       echo "<script>alert('Xoá thất bại');</script>";
    }
 ?>
