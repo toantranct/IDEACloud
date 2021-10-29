@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
   <!-- CSS only -->
   <link rel="stylesheet" href="../Assets/css/home.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- css menu -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css" integrity="sha512-0/rEDduZGrqo4riUlwqyuHDQzp2D1ZCgH/gFIfjMIL5az8so6ZiXyhf1Rg8i6xsjv+z/Ubc4tt1thLigEcu6Ug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -73,10 +78,10 @@
       <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z" />
     </symbol>
   </svg>
-  <header class="p-3 mb-3 border-bottom">
+  <header class="m-0 border-bottom" style="background-color: white; box-sizing:border-box; height: 70px;">
     <div class="container-fluid">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+        <a href="/" class="mt-3 d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
           <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
             <use xlink:href="#bootstrap" />
           </svg>
@@ -89,11 +94,11 @@
                     <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
                 </ul> -->
         <!-- <div class="col-12 col-lg-auto me-lg-auto"></div> -->
-        <form class="col-12 ms-auto col-lg-3 mb-3 mb-lg-0 me-lg-3 ">
+        <form class="col-12 ms-auto col-lg-3 mt-3 mb-3 mb-lg-0 me-lg-3 ">
           <input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Search">
         </form>
 
-        <div class="dropdown text-end">
+        <div class="dropdown text-end mt-3">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
@@ -181,26 +186,173 @@
     <div class="container-fluid">
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-10">
- 
-              <div class="row p-2 flex-grow-1 border-bottom">
-                <a href="/" class="d-flex col-2 justify-content-center pb-2 mb-3 text-decoration-none border-end ">
-                <button class="btn btn-primary rounded-pill" type="submit">Tải tệp lên</button>
-                </a>
-                <a href="/" class="d-flex col-2 justify-content-center pb-2 mb-3 text-decoration-none">
-                <button class="btn btn-info rounded-pill" type="submit">Tạo mới</button>
-                </a>
-              </div>
+          <div class="h-100 col-md-10 border" style="background-color: white;">
 
-       
+            <div class="row p-2-grow-1 border-bottom">
+              <a href="/" class="d-flex col-2 justify-content-center pb-2 mt-2 text-decoration-none border-end ">
+                <button class="btn btn-primary rounded-pill" type="submit">Tải tệp lên</button>
+              </a>
+              <a href="/" class="d-flex col-2 justify-content-center pb-2 mt-2 text-decoration-none">
+                <button class="btn btn-info rounded-pill" type="submit">Tạo mới</button>
+              </a>
+            </div>
+
+            <div class="h-100 file">
+              <div class="content">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card-box">
+                        <div class="row">
+                          <div class="col-lg-6 col-xl-6">
+                            <h4 class="header-title m-b-30">Tài liệu của tôi</h4>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          
+
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><div class="file-item-icon file-item-level-up fas fa-level-up-alt text-secondary"></div> </div><a href="#" class="file-download"></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">...</h5>
+                              
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
+                                <p class="mb-0"><small>568.8 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/bmp.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">Bmpfile.bmp</h5>
+                                <p class="mb-0"><small>845.8 mb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/psd.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">Photoshop_file.ps</h5>
+                                <p class="mb-0"><small>684.8 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/avi.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">Avifile.avi</h5>
+                                <p class="mb-0"><small>5.9 mb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/cad.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">Cadfile.cad</h5>
+                                <p class="mb-0"><small>95.8 mb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/txt.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">Mytextfile.txt</h5>
+                                <p class="mb-0"><small>568.8 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/eps.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">Epsfile.eps</h5>
+                                <p class="mb-0"><small>568.8 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/dll.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">Project_file.dll</h5>
+                                <p class="mb-0"><small>684.3 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/sql.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">Website_file.sql</h5>
+                                <p class="mb-0"><small>457.8 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/zip.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
+                                <p class="mb-0"><small>568.8 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/ps.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
+                                <p class="mb-0"><small>568.8 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-xl-2">
+                            <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                              <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                              <div class="file-man-title">
+                                <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
+                                <p class="mb-0"><small>568.8 kb</small></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="text-center mt-3">
+                          <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light"><i class="mdi mdi-refresh"></i> Load More Files</button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end col -->
+                  </div>
+                  <!-- end row -->
+                </div>
+                <!-- container -->
+              </div>
+            </div>
           </div>
 
-          <div class="col-md-2 h-auto ms-auto p-2 flex-grow-0  border" id="info">
+          <div class="d-flex h-100 col-md-2 ms-auto border" id="info">
 
-            <div class="p-3 bg-white">
+            <div class="h-100 p-3 bg-white">
 
               <span class="fs-5 fw-semibold  d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"> <i class="bi bi-info-circle"></i> &nbsp;Thông tin</span>
-
               ghi gì đó ở đây = ))
             </div>
 
