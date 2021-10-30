@@ -370,8 +370,8 @@
                                 <button type="button" class="btn btn-custom btn-rounded w-md waves-effect waves-light pull-right" data-toggle="modal" data-target="#upload-modal"><i class=" mdi mdi-upload"></i>Tải tệp lên</button>
 
 
-
-                                <button type="button" class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i class="mdi mdi-plus"></i>Tạo tài liệu mới</button>
+                                <a href="../home/textEditor.php" target="_blank"><button type="button" class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i class="mdi mdi-plus"></i>Tạo tài liệu mới</button></a>
+                                
 
                                 <h4 class="header-title m-b-30"><b>Tài liệu của tôi</b></h4>
 
