@@ -1,4 +1,5 @@
 <?php
+session_start();
  include '../config.php';
  if(isset($_POST['submit']))
  {
@@ -8,6 +9,7 @@
   $res = mysqli_query($conn, $sql) ; 
 
   if($res->num_rows>0) {
+    $_SESSION['loginOK'] = $username;
     echo "Đăng nhập thành công!";
     header('location:../home/index.php');
     } else {

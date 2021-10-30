@@ -2,7 +2,7 @@
  $connect = mysqli_connect("localhost", "root", "", "testing");  
  $query = "SELECT * FROM tbl_employee ORDER BY id";  
  $result = mysqli_query($connect, $query);  
- ?>  
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,44 +24,49 @@
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;">
-<?php 
-            if(isset($_SESSION['login']))
+    <?php 
+            if(isset($_SESSION['loginOK']))
             {
                header('location:login.php');
             }
      ?>
-<main>
-<!-- tiêu đề danh sách -->
-<div class="container">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body p-5 col bg-info text-light text-center">
-        <h1>Danh sách người dùng/tài liệu</h1>
-        </div>
-        <div class="card-body p-5 bg-dark">
-            <!-- bắt đầu 2 tab -->
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" data-bs-target="#nav-users" type="button" role="tab" aria-controls="nav-users" aria-selected="true">Users</button>
-                    <button class="nav-link" id="nav-docs-tab" data-bs-toggle="tab" data-bs-target="#nav-docs" type="button" role="tab" aria-controls="nav-docs" aria-selected="false">Documents</button>
+    <main>
+        <!-- tiêu đề danh sách -->
+        <div class="container">
+            <div class="card border-0 shadow my-5">
+                <div class="card-body p-5 col bg-info text-light text-center">
+                    <h1>Danh sách người dùng/tài liệu</h1>
                 </div>
-            </nav>
-                <!-- TAB người dùng -->
-            <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
-                <table class="table text-light">
-                        <thead>
-                            <tr>
-                                <th scope="col">Mã người dùng</th>
-                                <th scope="col">Tài khoản</th>
-                                <th scope="col">Mật khẩu</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Số di động</th>
-                                <th scope="col">Quyền hạn</th>
-                                <th scope="col">Cập nhật</th>
-                                <th scope="col">Xóa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+                <div class="card-body p-5 bg-dark">
+                    <!-- bắt đầu 2 tab -->
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-users-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-users" type="button" role="tab" aria-controls="nav-users"
+                                aria-selected="true">Users</button>
+                            <button class="nav-link" id="nav-docs-tab" data-bs-toggle="tab" data-bs-target="#nav-docs"
+                                type="button" role="tab" aria-controls="nav-docs"
+                                aria-selected="false">Documents</button>
+                        </div>
+                    </nav>
+                    <!-- TAB người dùng -->
+                    <div class="tab-pane fade show active" id="nav-users" role="tabpanel"
+                        aria-labelledby="nav-users-tab">
+                        <table class="table text-light">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mã người dùng</th>
+                                    <th scope="col">Tài khoản</th>
+                                    <th scope="col">Mật khẩu</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Số di động</th>
+                                    <th scope="col">Quyền hạn</th>
+                                    <th scope="col">Cập nhật</th>
+                                    <th scope="col">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
 
                             define('HOST','localhost');
                             define('USER','root');
@@ -92,28 +97,28 @@
                                 }
                             }
                             ?>
-                        </tbody>
-                </table>
-            </div>
-                <!-- TAB tài liệu -->
-            <div class="tab-pane fade" id="nav-docs" role="tabpanel" aria-labelledby="nav-docs-tab">
-                <table class="table text-light">
-                        <thead>
-                            <tr>
-                                <th scope="col">Mã tài liệu</th>
-                                <th scope="col">Tên tài liệu</th>
-                                <th scope="col">Tác giả</th>
-                                <th scope="col">Ngày sản xuất</th>
-                                <th scope="col">Mô tả</th>
-                                <th scope="col">Hiển thị với</th>
-                                <th scope="col">Tên tệp</th>
-                                <th scope="col">Người đưa lên</th>
-                                <th scope="col">Cập nhật</th>
-                                <th scope="col">Xóa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- TAB tài liệu -->
+                    <div class="tab-pane fade" id="nav-docs" role="tabpanel" aria-labelledby="nav-docs-tab">
+                        <table class="table text-light">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mã tài liệu</th>
+                                    <th scope="col">Tên tài liệu</th>
+                                    <th scope="col">Tác giả</th>
+                                    <th scope="col">Ngày sản xuất</th>
+                                    <th scope="col">Mô tả</th>
+                                    <th scope="col">Hiển thị với</th>
+                                    <th scope="col">Tên tệp</th>
+                                    <th scope="col">Người đưa lên</th>
+                                    <th scope="col">Cập nhật</th>
+                                    <th scope="col">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
                             $sql2 = "SELECT doc_ID, doc_name, doc_author, doc_date, description, visibility, filename, username FROM docs, users
                             where docs.user_id = users.user_id ORDER BY doc_ID";
                             $result2 = mysqli_query($conn,$sql2);
@@ -134,13 +139,16 @@
                                 }
                             }
                             ?>
-                        </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
