@@ -305,8 +305,74 @@
                         <div class="col-12">
                             <div class="card-box">
 
-                                <button type="button" class="btn btn-custom btn-rounded w-md waves-effect waves-light pull-right"><i class="mdi mdi-upload"></i>Tải tệp lên</button>
+                                <!-- modal tai tep -->
+
+                                <div id="upload-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-body">
+                                                <h2 class="text-uppercase text-center m-b-30">
+                                                    <a href="index.html" class="text-success">
+                                                        <span><img src="assets/images/logo.png" alt="" height="28"></span>
+                                                    </a>
+                                                </h2>
+
+
+                                                <form class="form-horizontal" action="#">
+
+                                                    <div class="form-group m-b-25">
+                                                        <div class="col-12">
+                                                            <label for="username">Name</label>
+                                                            <input class="form-control" type="email" id="username" required="" placeholder="Michael Zenaty">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group m-b-25">
+                                                        <div class="col-12">
+                                                            <label for="emailaddress">Email address</label>
+                                                            <input class="form-control" type="email" id="emailaddress" required="" placeholder="john@deo.com">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group m-b-25">
+                                                        <div class="col-12">
+                                                            <label for="password">Password</label>
+                                                            <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group m-b-20">
+                                                        <div class="col-12">
+                                                            <div class="checkbox checkbox-custom">
+                                                                <input id="checkbox11" type="checkbox" checked>
+                                                                <label for="checkbox11">
+                                                                    I accept <a href="#">Terms and Conditions</a>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group account-btn text-center m-t-10">
+                                                        <div class="col-12">
+                                                            <button class="btn w-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Sign Up Free</button>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                                <!-- end modal upload -->
+                                <button type="button" class="btn btn-custom btn-rounded w-md waves-effect waves-light pull-right" data-toggle="modal" data-target="#upload-modal"><i class=" mdi mdi-upload"></i>Tải tệp lên</button>
+
+
+
                                 <button type="button" class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i class="mdi mdi-plus"></i>Tạo tài liệu mới</button>
+
                                 <h4 class="header-title m-b-30"><b>Tài liệu của tôi</b></h4>
 
                                 <div class="row">
@@ -350,8 +416,9 @@
                                         </div>
                                     </div> -->
 
-                                    <div class="col-lg-3 col-xl-2" >
-                                        <div class="file-man-box" >
+                                    <!-- div thư mục -->
+                                    <!-- <div class="col-lg-3 col-xl-2">
+                                        <div class="file-man-box">
                                             <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
                                             <div class="file-img-box" style="font-size: 4rem;">
                                                 <i class="mdi mdi-folder-multiple"></i>
@@ -361,20 +428,22 @@
                                                 <p class="mb-0">&nbsp;</p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- return  -->
-                                    <div class="col-lg-3 col-xl-2" >
-                                        <div class="file-man-box" >
+                                    </div> -->
+
+                                    <!-- test click -->
+                                    <!-- <div class="col-lg-3 col-xl-2">
+                                        <div class="file-man-box">
                                             <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
-                                            <div class="file-img-box" style="font-size: 2rem;">
-                                                <i class="mdi mdi-keyboard-return"></i>
+                                            <div class="file-img-box" style="font-size: 4rem;">
+                                                <a href="<?php echo "/home/test.php?id=9&parent=1" ?>"><i class="mdi mdi-folder-multiple"></i></a>
                                             </div>
                                             <div class="file-man-title">
-                                                <h5 class="mb-0 text-overflow text-center">...</h5>
+                                                <h5 class="mb-0 text-overflow text-center">Thư mục</h5>
                                                 <p class="mb-0">&nbsp;</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
+
                                 </div>
 
 
