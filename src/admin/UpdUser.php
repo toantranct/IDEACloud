@@ -51,7 +51,7 @@
         <h5><?php echo $User?></h5><br>
         <input type="text" name="fullname" placeholder="Enter Fullname"><br><br>
         <input type="text" name="email" placeholder="Enter Email"><br><br>
-        <input type="text" name="phone" placeholder="Enter Phong Numbers"><br><br>
+        <input type="text" name="phone" placeholder="Enter Phone Numbers"><br><br>
         <select class="custom-select" name="dropdown1">
             <option value="1">Admin</option>
             <option value="0">Guest</option>
