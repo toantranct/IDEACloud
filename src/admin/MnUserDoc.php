@@ -1,8 +1,3 @@
-<?php  
- $connect = mysqli_connect("localhost", "root", "", "testing");  
- $query = "SELECT * FROM tbl_employee ORDER BY id";  
- $result = mysqli_query($connect, $query);  
- ?>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,18 +36,18 @@
             <!-- bắt đầu 2 tab -->
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" data-bs-target="#nav-users" type="button" role="tab" aria-controls="nav-users" aria-selected="true">Users</button>
-                    <button class="nav-link" id="nav-docs-tab" data-bs-toggle="tab" data-bs-target="#nav-docs" type="button" role="tab" aria-controls="nav-docs" aria-selected="false">Documents</button>
+                    <button class="nav-link active" id="nav-users-tab" data-bs-toggle="tab" data-bs-target="#nav-users" type="button" role="tab" aria-controls="nav-users" aria-selected="true">Người dùng</button>
+                    <button class="nav-link" id="nav-docs-tab" data-bs-toggle="tab" data-bs-target="#nav-docs" type="button" role="tab" aria-controls="nav-docs" aria-selected="false">Tài liệu</button>
                 </div>
             </nav>
-                <!-- TAB người dùng -->
-            <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
-                <table class="table text-light">
+    <div class="tab-content" id="nav-tabContent">
+        <!-- TAB người dùng -->
+    <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
+    <table class="table text-light">
                         <thead>
                             <tr>
-                                <th scope="col">Mã người dùng</th>
-                                <th scope="col">Tài khoản</th>
-                                <th scope="col">Mật khẩu</th>
+                                <th scope="col">Tài khoản</th>    
+                                <th scope="col">Tên người dùng</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Số di động</th>
                                 <th scope="col">Quyền hạn</th>
@@ -71,33 +66,32 @@
                             if(!$conn){
                                 die('Không thể kết nối');
                             }
-                            $sql = "SELECT user_id,	username, password,	email, SDT, authorize FROM users
+                            $sql = "SELECT user_id, fullname, username, password, email, SDT, authorize FROM users
                             where status = 1 ORDER BY user_id";
                             $result = mysqli_query($conn,$sql);
                             if(mysqli_num_rows($result)>0){
                                 while($row=mysqli_fetch_assoc($result)){
                                     echo '<tr>';
-                                    echo '<th scope="row">'.$row['user_id'].'</th>';
-                                    echo '<td>'.$row['username'].'</td>';
-                                    echo '<td>'.$row['password'].'</td>';
+                                    echo '<th scope="row">'.$row['username'].'</th>';
+                                    echo '<td>'.$row['fullname'].'</td>';
                                     echo '<td>'.$row['email'].'</td>';
                                     echo '<td>'.$row['SDT'].'</td>';
-                                    if ($row['authorize'] = 1){
-                                        echo 'admin';
+                                    if ($row['authorize'] == 1){
+                                        echo '<td>'.'<h5>Admin</h5>'.'</td>';
                                     }
-                                    else echo 'Khách';
-                                    echo '<td> <a href="UpdUser.php?manv='.$row['user_id'].'" ><i class="fas fa-user-edit" style="color:#3bc7ff;"></i></a></td>';
-                                    echo '<td> <a href="DelUser.php?manv='.$row['user_id'].'"><i class="fas fa-user-times" style="color:#3bc7ff;"></i></a></td>';
+                                    else echo '<td>'.'<h5>Khách</h5>'.'</td>';
+                                    echo '<td> <a href="UpdUser.php?usern='.$row['username'].'" ><i class="fas fa-user-edit" style="color:#3bc7ff;"></i></a></td>';
+                                    echo '<td> <a href="DelUser.php?id='.$row['user_id'].'"><i class="fas fa-user-times" style="color:#3bc7ff;"></i></a></td>';
                                     echo '</tr>';
                                 }
                             }
                             ?>
                         </tbody>
                 </table>
-            </div>
-                <!-- TAB tài liệu -->
-            <div class="tab-pane fade" id="nav-docs" role="tabpanel" aria-labelledby="nav-docs-tab">
-                <table class="table text-light">
+    </div>
+        <!-- TAB tài liệu -->
+    <div class="tab-pane fade" id="nav-docs" role="tabpanel" aria-labelledby="nav-docs-tab">
+    <table class="table text-light">
                         <thead>
                             <tr>
                                 <th scope="col">Mã tài liệu</th>
@@ -114,7 +108,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            $sql2 = "SELECT doc_ID, doc_name, doc_author, doc_date, description, visibility, filename, username FROM docs, users
+                            $sql2 = "SELECT doc_ID, doc_name, doc_author, doc_date, description, visibility, filename, fullname FROM docs, users
                             where docs.user_id = users.user_id ORDER BY doc_ID";
                             $result2 = mysqli_query($conn,$sql2);
                             if(mysqli_num_rows($result2)>0){
@@ -125,18 +119,25 @@
                                     echo '<td>'.$row2['doc_author'].'</td>';
                                     echo '<td>'.$row2['doc_date'].'</td>';
                                     echo '<td>'.$row2['description'].'</td>';
-                                    echo '<td>'.$row2['visibility'].'</td>';
+                                    if ($row2['visibility'] == 0){
+                                        echo '<td>'.'<h6>Public</h6>'.'</td>';
+                                    }
+                                    else if ($row2['visibility'] == 1){
+                                    echo '<td>'.'<h6>Only Me</h6>'.'</td>';
+                                    }
+                                    else echo '<td>'.'<h6>Member Only</h6>'.'</td>';
                                     echo '<td>'.$row2['filename'].'</td>';
-                                    echo '<td>'.$row2['username'].'</td>';
-                                    echo '<td> <a href="UpdDoc.php?matl='.$row['doc_ID'].'" ><i class="fas fa-user-edit" style="color:#3bc7ff;"></i></a></td>';
-                                    echo '<td> <a href="DelDoc.php?matl='.$row['doc_ID'].'"><i class="fas fa-user-times" style="color:#3bc7ff;"></i></a></td>';
+                                    echo '<td>'.$row2['fullname'].'</td>';
+                                    echo '<td> <a href="UpdDoc.php?iddoc='.$row2['doc_ID'].'" ><i class="far fa-edit" style="color:#3bc7ff"></i></a></td>';
+                                    echo '<td> <a href="DelDoc.php?iddoc='.$row2['doc_ID'].'"><i class="far fa-trash-alt" style="color:#3bc7ff"></i></a></td>';
                                     echo '</tr>';
                                 }
                             }
                             ?>
                         </tbody>
                 </table>
-            </div>
+    </div>
+    </div>       
         </div>
     </div>
 </div>
