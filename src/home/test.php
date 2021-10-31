@@ -48,7 +48,8 @@
                 <!-- User box -->
                 <div class="user-box">
                     <div class="user-img">
-                        <img src="../Assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                        <img src="../Assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme"
+                            class="rounded-circle img-fluid">
                     </div>
                     <h5><a href="#">Trần Quốc Toản</a> </h5>
                     <p class="text-muted">Admin</p>
@@ -117,7 +118,8 @@
 
 
                         <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
                                 <i class="fi-bell noti-icon"></i>
                                 <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
                             </a>
@@ -125,49 +127,59 @@
 
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
-                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Notification</h5>
+                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear
+                                                    All</small></a> </span>Notification</h5>
                                 </div>
 
                                 <div class="slimscroll" style="max-height: 230px;">
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-success"><i class="mdi mdi-comment-account-outline"></i></div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>
+                                        <div class="notify-icon bg-success"><i
+                                                class="mdi mdi-comment-account-outline"></i></div>
+                                        <p class="notify-details">Caleb Flakelar commented on Admin<small
+                                                class="text-muted">1 min ago</small></p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
-                                        <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
+                                        <p class="notify-details">New user registered.<small class="text-muted">5 hours
+                                                ago</small></p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>
+                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small
+                                                class="text-muted">3 days ago</small></p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-warning"><i class="mdi mdi-comment-account-outline"></i></div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>
+                                        <div class="notify-icon bg-warning"><i
+                                                class="mdi mdi-comment-account-outline"></i></div>
+                                        <p class="notify-details">Caleb Flakelar commented on Admin<small
+                                                class="text-muted">4 days ago</small></p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-purple"><i class="mdi mdi-account-plus"></i></div>
-                                        <p class="notify-details">New user registered.<small class="text-muted">7 days ago</small></p>
+                                        <p class="notify-details">New user registered.<small class="text-muted">7 days
+                                                ago</small></p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="notify-icon bg-custom"><i class="mdi mdi-heart"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>
+                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small
+                                                class="text-muted">13 days ago</small></p>
                                     </a>
                                 </div>
 
                                 <!-- All-->
-                                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                                <a href="javascript:void(0);"
+                                    class="dropdown-item text-center text-primary notify-item notify-all">
                                     View all <i class="fi-arrow-right"></i>
                                 </a>
 
@@ -175,7 +187,8 @@
                         </li>
 
                         <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
                                 <i class="fi-speech-bubble noti-icon"></i>
                                 <span class="badge badge-custom badge-pill noti-icon-badge">6</span>
                             </a>
@@ -183,48 +196,57 @@
 
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
-                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Chat</h5>
+                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear
+                                                    All</small></a> </span>Chat</h5>
                                 </div>
 
                                 <div class="slimscroll" style="max-height: 230px;">
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-2.jpg"
+                                                class="img-fluid rounded-circle" alt="" /> </div>
                                         <p class="notify-details">Cristina Pride</p>
-                                        <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
+                                        <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next
+                                            meeting</p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-3.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-3.jpg"
+                                                class="img-fluid rounded-circle" alt="" /> </div>
                                         <p class="notify-details">Sam Garret</p>
                                         <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-4.jpg"
+                                                class="img-fluid rounded-circle" alt="" /> </div>
                                         <p class="notify-details">Karen Robinson</p>
                                         <p class="text-muted font-13 mb-0 user-msg">Wow that's great</p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-5.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-5.jpg"
+                                                class="img-fluid rounded-circle" alt="" /> </div>
                                         <p class="notify-details">Sherry Marshall</p>
-                                        <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next meeting</p>
+                                        <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next
+                                            meeting</p>
                                     </a>
 
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-6.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-6.jpg"
+                                                class="img-fluid rounded-circle" alt="" /> </div>
                                         <p class="notify-details">Shawn Millard</p>
                                         <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
                                     </a>
                                 </div>
 
                                 <!-- All-->
-                                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                                <a href="javascript:void(0);"
+                                    class="dropdown-item text-center text-primary notify-item notify-all">
                                     View all <i class="fi-arrow-right"></i>
                                 </a>
 
@@ -232,8 +254,10 @@
                         </li>
 
                         <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="../Assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Maxine K <i class="mdi mdi-chevron-down"></i> </span>
+                            <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <img src="../Assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span
+                                    class="ml-1">Maxine K <i class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
                                 <!-- item-->
@@ -306,72 +330,97 @@
                             <div class="card-box">
 
                                 <!-- modal tai tep -->
-
-                                <div id="upload-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-
-                                            <div class="modal-body">
-                                                <h2 class="text-uppercase text-center m-b-30">
-                                                    <a href="index.html" class="text-success">
-                                                        <span><img src="assets/images/logo.png" alt="" height="28"></span>
-                                                    </a>
-                                                </h2>
-
-
-                                                <form class="form-horizontal" action="#">
-
-                                                    <div class="form-group m-b-25">
-                                                        <div class="col-12">
-                                                            <label for="username">Name</label>
-                                                            <input class="form-control" type="email" id="username" required="" placeholder="Michael Zenaty">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Thêm tài liệu</h4>
+                                            </div>
+                                            <div class="modal-body p-4">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="field-1" class="control-label">Tên tài
+                                                                liệu</label>
+                                                            <input type="text" class="form-control" id="d_name"
+                                                                placeholder="Nhập tên tài liệu">
                                                         </div>
                                                     </div>
-
-                                                    <div class="form-group m-b-25">
-                                                        <div class="col-12">
-                                                            <label for="emailaddress">Email address</label>
-                                                            <input class="form-control" type="email" id="emailaddress" required="" placeholder="john@deo.com">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="field-2" class="control-label">Tác giả</label>
+                                                            <input type="text" class="form-control" id="d_author"
+                                                                placeholder="Nhập tác giả">
                                                         </div>
                                                     </div>
-
-                                                    <div class="form-group m-b-25">
-                                                        <div class="col-12">
-                                                            <label for="password">Password</label>
-                                                            <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="field-3" class="control-label">Ngày sản
+                                                                xuất</label>
+                                                            <input type="date" class="form-control" id="d_date"
+                                                                placeholder="Nhập ngày sản xuất">
                                                         </div>
                                                     </div>
-
-                                                    <div class="form-group m-b-20">
-                                                        <div class="col-12">
-                                                            <div class="checkbox checkbox-custom">
-                                                                <input id="checkbox11" type="checkbox" checked>
-                                                                <label for="checkbox11">
-                                                                    I accept <a href="#">Terms and Conditions</a>
-                                                                </label>
-                                                            </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="d_des" class="control-label">Mô tả</label>
+                                                            <input type="text" class="form-control" id="d_des"
+                                                                placeholder="Nhập mô tả">
                                                         </div>
                                                     </div>
-
-                                                    <div class="form-group account-btn text-center m-t-10">
-                                                        <div class="col-12">
-                                                            <button class="btn w-lg btn-rounded btn-primary waves-effect waves-light" type="submit">Sign Up Free</button>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="d_des" class="control-label">Hiển thị
+                                                                với</label>
+                                                            <select class="custom-select" name="dropdown1">
+                                                                <option value="0">Only Me</option>
+                                                                <option value="1">Member Only</option>
+                                                                <option value="2">Public</option>
+                                                            </select>
                                                         </div>
                                                     </div>
-
-                                                </form>
-
-
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="d_doc" class="control-label">Tải lên file:
+                                                            </label>
+                                                            <input type="file" id="d_doc">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-info text-light waves-effect"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="button"
+                                                    class="btn btn-info text-light waves-effect waves-light"
+                                                    data-bs-dismiss="modal">Save changes</button>
                                             </div>
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div><!-- /.modal -->
                                 <!-- end modal upload -->
-                                <button type="button" class="btn btn-custom btn-rounded w-md waves-effect waves-light pull-right" data-toggle="modal" data-target="#upload-modal"><i class=" mdi mdi-upload"></i>Tải tệp lên</button>
+                                <!-- Button trigger modal -->
+                                <button type="button"
+                                    class="btn btn-custom btn-rounded w-md waves-effect waves-light pull-right"
+                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
+                                        class=" mdi mdi-upload"></i>Tải tệp lên</button>
 
+                                <a href="../home/textEditor.php" target="_blank"><button type="button"
+                                        class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i
+                                            class="mdi mdi-plus"></i>Tạo tài liệu mới</button></a>
 
-                                <a href="../home/textEditor.php" target="_blank"><button type="button" class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i class="mdi mdi-plus"></i>Tạo tài liệu mới</button></a>
-                                
 
                                 <h4 class="header-title m-b-30"><b>Tài liệu của tôi</b></h4>
 
@@ -485,6 +534,9 @@
     <script src="../Assets/js/metisMenu.min.js"></script>
     <script src="../Assets/js/waves.js"></script>
     <script src="../Assets/js/jquery.slimscroll.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 
     <!-- App js -->
     <script src="../Assets/js/jquery.core.js"></script>
