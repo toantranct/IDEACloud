@@ -3,14 +3,22 @@ include '../config.php';
 extract($_POST);
 
 //  Cú pháp lấy dữ liệu từ input : $name 
-$target_dir = "../document/";
+$target_dir = "../documents/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
 $file_name = $_FILES['fileToUpload']['name'];
 $file_size = $_FILES['fileToUpload']['size'];
 $file_tmp = $_FILES['fileToUpload']['tmp_name'];
-$file_type = $_FILES['fileToUpload']['type'];
+$file_type = pathinfo($target_file,PATHINFO_EXTENSION);
+$u_name = $_GET['u_name'];
+$u_id = "select user_id from users where username = '$u_name'";
+$d_name = ($_POST['d_name']);
+$d_author = ($_POST['d_author']);
+$d_date = ($_POST['d_date']);
+$d_des = ($_POST['d_des']);
+$Visi = ($_POST['dropdown1']);
 
+echo $u_name;
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -34,6 +42,9 @@ if ($uploadOk == 0) {
   echo "Your file was not uploaded.";
   // if everything is ok, try to upload file
 } else {
+  $sql = "INSERT INTO `docs`(`doc_name`, `doc_author`, `doc_date`, `description`, `visibility`, `type_file`, `type`, `filename`, `user_ID`) 
+  VALUES ('$d_name','$d_author','$d_date','$d_des','$Visi','$file_type','0','$file_name','$u_id')";
+  $res = mysqli_query($conn, $sql);
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "Upload file thành công!";
   } else {

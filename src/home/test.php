@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
-
+<?php 
+// nếu đã đăng nhập và là admin
+// sql kiểm tra admin
+            if(!isset($_SESSION['loginOK']))
+            {
+               header('location:../login/login.php');
+            }
+     ?>
 <head>
     <meta charset="utf-8" />
     <title>IDEA Cloud</title>
@@ -553,6 +560,7 @@
             // $("#form-upload").submit(function(e) {
             $("#btnUpload").click(function(e) {
                 e.preventDefault();
+                var u_name = $("#username").val();
                 var d_name = $("#d_name").val();
                 var d_author = $("#d_author").val();
                 var d_date = $("#d_date").val();
