@@ -1,9 +1,10 @@
 <?php
-include('../config.php')
+include('../config.php');
+if(isset($_GET['email'])){
     $email = $_GET['email'];
     $code  = $_GET['code'];
-    
-    $sql = "SELECT * FROM users WHERE email='$email' and code='$code'";
+}
+    $sql = "SELECT * FROM users WHERE email='$email' or code='$code'";
     $result = mysqli_query($conn,$sql);
 
     if(mysqli_num_rows($result) > 0){
