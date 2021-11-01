@@ -8,7 +8,7 @@ if(isset($_GET['email'])){
     $result = mysqli_query($conn,$sql);
 
     if(mysqli_num_rows($result) > 0){
-        $sql_2 = "UPDATE users SET status = 1 WHERE email = '$email'";
+        $sql_2 = "UPDATE users SET status = 1, authorize = 0 WHERE email = '$email'";
         $result_2 = mysqli_query($conn,$sql_2);
 
         if($result_2 > 0){
