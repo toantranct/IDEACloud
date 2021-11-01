@@ -1,7 +1,9 @@
 <?php 
-            if(isset($_SESSION['loginOK']))
+// nếu đã đăng nhập và là admin
+// sql kiểm tra admin
+            if(!isset($_SESSION['loginOK']))
             {
-               header('location:login.php');
+               header('location:../login/login.php');
             }
      ?>
 <!DOCTYPE html>

@@ -19,8 +19,8 @@
                 <h1>IDEACloud</h1>
             </div>
             <div class="col-md-4 text-content-center">
-                <a class="btn btn-white me-md-2 btn-outline-primary" href="../login/login.php">Đăng Nhập</a>
-                <a class="btn btn-white btn-outline-primary" href="../register/register.php">Đăng Ký</a>
+                <a class="btn btn-white me-md-2 btn-outline-primary" href="/login/login.php">Đăng Nhập</a>
+                <a class="btn btn-white btn-outline-primary" href="/register/register.php">Đăng Ký</a>
 
 
             </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="container-fluit"
-        style="background-image: url(../../img/imgcloud.jpg); background-position: center;background-repeat:no-repeat">
+        style="background-image: url(/img/imgcloud.jpg); background-position: center;background-repeat:no-repeat">
         <br><br><br><br><br><br><br><br><br><br>
     </div>
     <br><br><br>
@@ -41,7 +41,7 @@
                     sẻ nó thông qua máy tính,điện thoại,máy tính bảng nào tại IDEACloud</p>
             </div>
             <div class="col-md-6">
-                <img src="../../img/img1.png" alt="">
+                <img src="/img/img1.png" alt="">
             </div>
         </div>
         <br><br><br><br>
