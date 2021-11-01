@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="container-fluit"
-        style="background-image: url(../../img/imgcloud.jpg); background-position: center;background-repeat:no-repeat">
+        style="background-image: url(src/img/imgcloud.jpg); background-position: center;background-repeat:no-repeat">
         <br><br><br><br><br><br><br><br><br><br>
     </div>
     <br><br><br>
@@ -41,13 +41,13 @@
                     sẻ nó thông qua máy tính,điện thoại,máy tính bảng nào tại IDEACloud</p>
             </div>
             <div class="col-md-6">
-                <img src="../../img/img1.png" alt="">
+                <img src="src/img/img1.png" alt="">
             </div>
         </div>
         <br><br><br><br>
         <div class="row">
             <div class="col-xl-8">
-                <img src="../../img/img2.png" alt="">
+                <img src="src/img/img2.png" alt="">
             </div>
             <div class="col-xl-4 fs-4">
                 <h3>Tạo nội dung bất kỳ</h3>
@@ -65,7 +65,7 @@
                     lập chế độ riêng tư, trừ phi bạn quyết định chia sẻ.</p>
             </div>
             <div class="col-md-6">
-                <img src="../../img/img3.jpg" alt="">
+                <img src="src/img/img3.jpg" alt="">
             </div>
         </div>
     </div>
