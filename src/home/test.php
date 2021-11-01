@@ -389,7 +389,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-info text-light waves-effect" data-bs-dismiss="modal">Đóng</button>
-                                                    <button type="submit"  id="btnUpload" class="btn btn-info text-light waves-effect waves-light"  name="submit">Tải lên</button>
+                                                    <button type="submit" id="btnUpload" class="btn btn-info text-light waves-effect waves-light" name="submit">Tải lên</button>
                                                     <!-- data-bs-dismiss="modal" -->
                                                 </div>
                                             </div><!-- /.modal-content -->
@@ -419,10 +419,10 @@
                                 // }
                                 ?>
                                 <!-- Button trigger modal -->
-                               
+
                                 <button type="button" class="btn btn-custom btn-rounded w-md waves-effect waves-light pull-right" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class=" mdi mdi-upload"></i>Tải tệp lên</button>
 
-                                <a href="../home/textEditor.php"  target="_blank"><button type="button" class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i class="mdi mdi-plus"></i>Tạo tài liệu mới</button></a>
+                                <a href="../home/textEditor.php" target="_blank"><button type="button" class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i class="mdi mdi-plus"></i>Tạo tài liệu mới</button></a>
 
 
                                 <h4 class="header-title m-b-30"><b>Tài liệu của tôi</b></h4>
@@ -549,17 +549,23 @@
     <script src="../Assets/js/jquery.app.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script>
-        $(document).ready(function() { 
-           // $("#form-upload").submit(function(e) {
-            $("#btnUpload").click(function (e) {
+        $(document).ready(function() {
+            // $("#form-upload").submit(function(e) {
+            $("#btnUpload").click(function(e) {
                 e.preventDefault();
                 var d_name = $("#d_name").val();
                 var d_author = $("#d_author").val();
                 var d_date = $("#d_date").val();
                 var d_des = $("#d_des").val();
                 var visi = $('#dropdown1 option:selected').val();
-                if (d_name == "" || d_author == "" || d_date == "" || visi == "") {                    
+                var file = $("#fileToUpload").val();
+                if (d_name == "" || d_author == "" || d_date == "" || visi == "") {
                     $("#msg").fadeIn().html('<b class="text-danger"> Vui lòng nhập đầy đủ thông tin</b>');
+                    setTimeout(function() {
+                        $("#msg").fadeOut();
+                    }, 4000);
+                } else if (file == "") {
+                    $("#msg").fadeIn().html('<b class="text-danger">Vui lòng tải tệp lên</b>');
                     setTimeout(function() {
                         $("#msg").fadeOut();
                     }, 4000);
