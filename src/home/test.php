@@ -393,9 +393,11 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="d_doc" class="control-label">Tải lên file:
-                                                            </label>
-                                                            <input type="file" id="d_doc">
+                                                            <form action="upload.php" method="post"
+                                                                enctype="multipart/form-data">
+                                                                Chọn file để tải lên:
+                                                                <input type="file" name="fileToUpload"
+                                                                    id="fileToUpload">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -403,14 +405,38 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-info text-light waves-effect"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <button type="button"
+                                                <button type="submit"
                                                     class="btn btn-info text-light waves-effect waves-light"
-                                                    data-bs-dismiss="modal">Save changes</button>
+                                                    data-bs-dismiss="modal" name="submit">Save changes</button>
+                                                </form>
                                             </div>
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div><!-- /.modal -->
                                 <!-- end modal upload -->
+                                <?php
+                                    
+                                    if(isset($_POST['submit']))  
+                                    {
+                                        $Name = ($_POST['d_name']);
+                                        $Author = ($_POST['d_author']);
+                                        $Date = ($_POST['d_date']);
+                                        $Des = ($_POST['d_des']);
+                                        $Visi = ($_POST['dropdown1']);
+                                        $Upld = basename($_FILES["fileToUpload"]["name"]);
+                                        $sql = "insert into docs 
+                                        (`doc_name`, `doc_author`, `doc_date`, `description`, `visibility`, 'filename')
+                                        values ('$Name', '$Author', '$Date', '$Des', '$Visi', '$Upld' )";
+                                        $res = mysqli_query($conn, $sql);
+                                        if($res==true)
+                                    {
+                                        header('location:test.php');
+                                    }else
+                                    {
+                                        echo"Sửa thất bại";
+                                    }
+                                    }
+                                ?>
                                 <!-- Button trigger modal -->
                                 <button type="button"
                                     class="btn btn-custom btn-rounded w-md waves-effect waves-light pull-right"
