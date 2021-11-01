@@ -7,8 +7,8 @@
  if(!$conn){
      die('Không thể kết nối'.$conn->connect_error);
  }
-    $ID = $_GET['id'];
-    $sql = "DELETE FROM users WHERE user_id='$ID'";
+    $ID = $_GET['iddoc'];
+    $sql = "DELETE FROM docs WHERE doc_id='$ID'";
     $res = mysqli_query($conn, $sql);
     if($res==true)
    {    
