@@ -13,22 +13,22 @@
 </head>
 
 <body>
-    <div class="container-fluit">
+    <div class="container-fluid">
         <div class="row ">
             <div class="col-md-8 text-center">
                 <h1>IDEACloud</h1>
             </div>
             <div class="col-md-4 text-content-center">
-                <a class="btn btn-white me-md-2 btn-outline-primary" href="/login/login.php">Đăng Nhập</a>
-                <a class="btn btn-white btn-outline-primary" href="/register/register.php">Đăng Ký</a>
+                <a class="btn btn-white me-md-2 btn-outline-primary" href="login/login.php">Đăng Nhập</a>
+                <a class="btn btn-white btn-outline-primary" href="register/register.php">Đăng Ký</a>
 
 
             </div>
 
         </div>
     </div>
-    <div class="container-fluit"
-        style="background-image: url(/img/imgcloud.jpg); background-position: center;background-repeat:no-repeat">
+    <div class="container-fluid"
+        style="background-image: url(img/imgcloud.jpg); background-position: center;background-repeat:no-repeat">
         <br><br><br><br><br><br><br><br><br><br>
     </div>
     <br><br><br>
@@ -41,13 +41,13 @@
                     sẻ nó thông qua máy tính,điện thoại,máy tính bảng nào tại IDEACloud</p>
             </div>
             <div class="col-md-6">
-                <img src="/img/img1.png" alt="">
+                <img src="img/img1.png" alt="">
             </div>
         </div>
         <br><br><br><br>
         <div class="row">
             <div class="col-xl-8">
-                <img src="../../img/img2.png" alt="">
+                <img src="img/img2.png" alt="">
             </div>
             <div class="col-xl-4 fs-4">
                 <h3>Tạo nội dung bất kỳ</h3>
@@ -65,12 +65,12 @@
                     lập chế độ riêng tư, trừ phi bạn quyết định chia sẻ.</p>
             </div>
             <div class="col-md-6">
-                <img src="../../img/img3.jpg" alt="">
+                <img src="img/img3.jpg" alt="">
             </div>
         </div>
     </div>
     <br><br>
-    <div class="container-fluit py-4 text-center bg-info">
+    <div class="container-fluid py-4 text-center bg-info">
         <h5>Design By IDEATEAM</h5>
     </div>
 </body>

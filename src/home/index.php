@@ -297,8 +297,8 @@
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="fi-power"></i> <span>Logout</span>
+                                <a href="../logout.php" class="dropdown-item notify-item">
+                                    <i class="fi-power"></i><span>Logout</span>
                                 </a>
 
                             </div>
