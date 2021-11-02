@@ -13,15 +13,15 @@ $file_name = $_FILES['fileToUpload']['name'];
 $file_size = $_FILES['fileToUpload']['size'];
 $file_tmp = $_FILES['fileToUpload']['tmp_name'];
 $file_type = pathinfo($target_file,PATHINFO_EXTENSION);
-$u_name = $_GET['u_name'];
-$u_id = "select user_id from users where username = '$u_name'";
+$u_name =  ($_POST['u_name']);
+$res2 = mysqli_query($conn, "select * from users where username = '$u_name'");
+$row = mysqli_fetch_row($res2);
 $d_name = ($_POST['d_name']);
 $d_author = ($_POST['d_author']);
 $d_date = ($_POST['d_date']);
 $d_des = ($_POST['d_des']);
 $Visi = ($_POST['dropdown1']);
 
-echo $u_name;
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -33,10 +33,10 @@ if (file_exists($target_file)) {
 
 // Allow certain file formats
 if (
-  $imageFileType != "docx" && $imageFileType != "doc" && $imageFileType != "xls" && $imageFileType != "html"
+  $imageFileType != "docx" && $imageFileType != "doc" && $imageFileType != "xls" && $imageFileType != "html" && $imageFileType != "htm"
   && $imageFileType != "xlsx" && $imageFileType != "ppt" && $imageFileType != "pptx" && $imageFileType != "pdf"
 ) {
-  echo "Only doc/docx, xls/xlsx, ppt/pptx, pdf, html files are allowed. ";
+  echo "Only doc/docx, xls/xlsx, ppt/pptx, pdf, html/htm files are allowed. ";
   $uploadOk = 0;
 }
 
@@ -46,7 +46,7 @@ if ($uploadOk == 0) {
   // if everything is ok, try to upload file
 } else {
   $sql = "INSERT INTO `docs`(`doc_name`, `doc_author`, `doc_date`, `description`, `visibility`, `type_file`, `type`, `filename`, `user_ID`) 
-  VALUES ('$d_name','$d_author','$d_date','$d_des','$Visi','$file_type','0','$file_name','$u_id')";
+  VALUES ('$d_name','$d_author','$d_date','$d_des','$Visi','$file_type','0','$file_name','$row[0]')";
   $res = mysqli_query($conn, $sql);
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "Upload file thành công!";

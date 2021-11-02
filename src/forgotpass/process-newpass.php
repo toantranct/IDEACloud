@@ -1,6 +1,6 @@
 <?php
 include('../config.php');
-if(isset($_POST['submit'])){
+if(isset($_POST['btnsubmit'])){
     $pass1 = $_POST['password1'];
     $pass2  = $_POST['password2'];
     $email =$_POST['email'];
