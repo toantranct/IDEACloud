@@ -20,7 +20,6 @@
       }
       else 
       if (password_verify($password_raw,$password_hash) && $status==0){
-          $_SESSION['loginOK'] = $username;
           echo '<script language="javascript">';
           echo 'alert("Tài Khoản chưa được kích hoạt"); history.back();';
           echo '</script>';
