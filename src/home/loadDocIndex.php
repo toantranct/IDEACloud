@@ -7,7 +7,7 @@
      $res2 = mysqli_query($conn, "select * from users where username = '$username'");
      $row = mysqli_fetch_row($res2);
      $user_id = $row[0];
-     $type = isset($_GET['type']) ? $_GET['type'] : '';
+     $type = isset($_GET['type']) ? $_GET['type'] : 0;
   
     
     // load return
@@ -71,14 +71,14 @@
     // load tệp -- 
     if ($group_ID == "" && $parent == "") {
         $sql  ="select DISTINCT doc_name, doc_author, doc_date, description, visibility, type_file, type, filename  
-        from docs 
-        where user_id = '$user_id'
+        from docs , users
+        where docs.user_id = users.user_id and  users.user_id = '$user_id'
         order  by doc_name";
     }
      else {
         $sql = "select DISTINCT doc_name, doc_author, doc_date, description, visibility, type_file, type, filename 
-        from docs, group_detail, doc_groups
-         where docs.doc_ID = group_detail.doc_ID and group_detail.group_ID = doc_groups.group_ID  and user_id = '$user_id' ";
+        from docs, group_detail, doc_groups, users
+         where docs.doc_ID = group_detail.doc_ID and group_detail.group_ID = doc_groups.group_ID  and users.user_id = docs_user_id and users.user_id = '$user_id' ";
         if ($parent == '')
             $sql  = $sql . ' and parent is null';
         else    $sql  = $sql . " and parent = '$parent'";
@@ -88,65 +88,83 @@
      }
   
      if (($type == 2 && $group_ID != "") || $type != 2) {
-        $results = $conn->query($sql);
-        if ($results !== false && $results->num_rows > 0) {
-            while($row = $results->fetch_assoc()){
-    
-                $file_name = $row['filename'];
-                $type_file = $row['type_file'];  
-                $date = $row['doc_date'];
-                if ($row['visibility'] == 0)
-                    $visibility = 'Chỉ mình tôi';
-                else if ($row['visibility'] == 1) 
-                    $visibility = 'Thành viên được chỉ định';
-                else $visibility ='Công khai';
-                if ($row['type'] == 0) 
-                    $type ='Tải lên';
-                else 
-                    $type = 'Được tạo';
-                if ($type_file == 'docx') $type_file = 'doc';
-                if ($type_file == 'xlsx') $type_file = 'xls';
-                if ($type_file == 'pptx') $type_file = 'ppt';
-            echo '
-            <div class="col-lg-3 col-xl-2">
-                                        <div class="file-man-box">
-                                            <a class="file-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                                <i class="mdi mdi-information"></i>
-    
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-left dropdown-menu-animated dropdown-lg">
-    
-                                                <!-- item-->
-                                                <div class="dropdown-item noti-title">
-                                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"></a> </span>Thông tin tài liệu</h5>
-                                                </div>
-    
-                                                <div class="slimscroll" style="max-height: 300px;">
-                                                    <!-- item-->
-                                                    <p class="dropdown-item notify-item">Tên file: '.$file_name.' </p>
-                                                    <p class="dropdown-item notify-item">kích thước: 13.2KB </p>
-                                                    <p class="dropdown-item notify-item">Loại file: '.$type .'</p>
-                                                    <p class="dropdown-item notify-item ">Ngày tải lên: '.$date .'</p>
-                                                    <p class="dropdown-item notify-item ">Thuộc tính: '.$visibility.'</p>
-    
-    
-                                                </div>
-                                            </div>
-    
-                                            <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
-                                            <div class="file-img-box">
-                                                <img src="../Assets/images/file_icons/'.$type_file.'.svg" alt="icon">
-                                            </div>
-                                            <a href="#" class="file-download"><i class="mdi mdi-download"></i> </a>
-                                            <div class="file-man-title">
-                                                <h5 class="mb-0 text-overflow">'.$file_name.'</h5>
-                                                <p class="mb-0"><small>568.8 kb</small></p>
-                                            </div>
-                                        </div>
-                                    </div>';
-            
-            }
+         if ($type == 1) {
+             // được chia sẻ với tôi
+             $sql = "select DISTINCT doc_name, doc_author, doc_date, description, visibility, type_file, type, filename 
+             from docs, group_detail, doc_groups, users, share
+              where users.username = share.username and share.doc_id = docs.doc_id
+              and users.user_id = docs.user_id and users.user_id = '$user_id' ";
+             if ($group_ID != '')
+              {
+                  $sql = $sql . " docs.doc_ID = group_detail.doc_ID and group_detail.group_ID = doc_groups.group_ID and doc_groups.group_ID = '$group_ID' ";
+                  if ($parent == '') 
+                          $sql  = $sql . ' and parent is null';
+                  else    $sql  = $sql . " and parent = '$parent'";
+              }
+     
+             $sql = $sql. ' order by doc_name';   
+             
+         }
+         $results = $conn->query($sql);
+         if ($results !== false && $results->num_rows > 0) {
+             while($row = $results->fetch_assoc()){
+     
+                 $file_name = $row['filename'];
+                 $type_file = $row['type_file'];  
+                 $date = $row['doc_date'];
+                 if ($row['visibility'] == 0)
+                     $visibility = 'Chỉ mình tôi';
+                 else if ($row['visibility'] == 1) 
+                     $visibility = 'Thành viên được chỉ định';
+                 else $visibility = 'Công khai';
+                 if ($row['type'] == 0) 
+                     $type ='Tải lên';
+                 else 
+                     $type = 'Được tạo';
+                 if ($type_file == 'docx') $type_file = 'doc';
+                 if ($type_file == 'xlsx') $type_file = 'xls';
+                 if ($type_file == 'pptx') $type_file = 'ppt';
+             echo '
+             <div class="col-lg-3 col-xl-2">
+                                         <div class="file-man-box">
+                                             <a class="file-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                 <i class="mdi mdi-information"></i>
+     
+                                             </a>
+                                             <div class="dropdown-menu dropdown-menu-left dropdown-menu-animated dropdown-lg">
+     
+                                                 <!-- item-->
+                                                 <div class="dropdown-item noti-title">
+                                                     <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"></a> </span>Thông tin tài liệu</h5>
+                                                 </div>
+     
+                                                 <div class="slimscroll" style="max-height: 300px;">
+                                                     <!-- item-->
+                                                     <p class="dropdown-item notify-item">Tên file: '.$file_name.' </p>
+                                                     <p class="dropdown-item notify-item">kích thước: 13.2KB </p>
+                                                     <p class="dropdown-item notify-item">Loại file: '.$type .'</p>
+                                                     <p class="dropdown-item notify-item ">Ngày tải lên: '.$date .'</p>
+                                                     <p class="dropdown-item notify-item ">Thuộc tính: '.$visibility.'</p>
+     
+     
+                                                 </div>
+                                             </div>
+     
+                                             <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
+                                             <div class="file-img-box">
+                                                 <img src="../Assets/images/file_icons/'.$type_file.'.svg" alt="icon">
+                                             </div>
+                                             <a href="#" class="file-download"><i class="mdi mdi-download"></i> </a>
+                                             <div class="file-man-title">
+                                                 <h5 class="mb-0 text-overflow">'.$file_name.'</h5>
+                                                 <p class="mb-0"><small>568.8 kb</small></p>
+                                             </div>
+                                         </div>
+                                     </div>';
+             
+             }
         }
+        
      }
-  
+
 ?>
