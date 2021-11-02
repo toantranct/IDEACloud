@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <?php
-// nếu đã đăng nhập và là admin
-// sql kiểm tra admin
-// if(!isset($_SESSION['loginOK']))
-// {
-//    header('location:../login/login.php');
-// }
 session_start();
 if (!isset($_SESSION['loginOK'])) {
     header('location:../login/login.php');
+}
+
+include '../config.php';
+$sql = "select * from users where username = '".$_SESSION['loginOK']."'";
+$rs = $conn->query($sql);
+if ($rs !== false && $rs->num_rows > 0 ){
+    $dataUser = $rs->fetch_assoc();
 }
 ?>
 
@@ -50,15 +51,24 @@ if (!isset($_SESSION['loginOK'])) {
 
     $rs = $conn->query($sql);
 
-    if ($rs->num_rows >  0) {
+    if ($rs !== false && $rs->num_rows >  0) {
         echo "<script> var users = [];";
         while ($row = $rs->fetch_assoc()) {
-
             echo 'users.push(\'' . $row['username'] . '\');';
         }
-        echo "</script>";
     }
+    $sql = "select group_id, group_name from doc_groups";
+    $rs = $conn->query($sql);
 
+    echo "var group = [];";
+
+    if ($rs !== false && $rs->num_rows >  0) {
+
+        while ($row = $rs->fetch_assoc()) {
+            echo 'group.push({id: \'' . $row['group_id'] . '\', name : \'' . $row['group_name'] . '\'});';
+        }
+    }
+    echo "</script>";
     ?>
 
 
@@ -88,8 +98,15 @@ if (!isset($_SESSION['loginOK'])) {
                     <div class="user-img">
                         <img src="../Assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                     </div>
-                    <h5><a href="#">Trần Quốc Toản</a> </h5>
-                    <p class="text-muted">Admin</p>
+                    <h5><a href="#"><?php echo $dataUser["fullname"]; ?></a> </h5>
+                    <p class="text-muted">
+                        <?php
+                            if ($dataUser["authorize"] == 1)
+                                echo "Quản trị viên";
+                            else 
+                             echo "Dân quoèn";
+                        ?>
+                    </p>
                 </div>
 
                 <!--- Sidemenu -->
@@ -116,7 +133,7 @@ if (!isset($_SESSION['loginOK'])) {
                             </a>
                         </li>
 
-                        <li class="menu-title">Tags</li>
+                        <!-- <li class="menu-title">Tags</li> -->
 
 
                 </div>
@@ -185,7 +202,18 @@ if (!isset($_SESSION['loginOK'])) {
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">IDEA Cloud</a></li>
                                     <!-- <li class="breadcrumb-item"><a href="#">Pages</a></li> -->
-                                    <li class="breadcrumb-item active">Tài liệu của tôi</li>
+                                    <li class="breadcrumb-item active">
+                                        <?php
+                                        $type = isset($_GET['type']) ? $_GET['type'] : 0;
+                                        if ($type == 0)
+                                            echo "Tài liệu của tôi";
+                                        else 
+                                             if ($type == 1)
+                                            echo "Được chia sẻ với tôi";
+                                        else
+                                            echo "Nhóm tài liệu"
+                                        ?>
+                                    </li>
                                 </ol>
                             </div>
                         </li>
@@ -280,6 +308,18 @@ if (!isset($_SESSION['loginOK'])) {
 
                                                     </div>
 
+                                                    <div class="row" id="groupShare">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="d_des" class="control-label">Thêm vào nhóm</label>
+                                                                <input class="form-control" id="myInput1" type="text" placeholder="Search...">
+                                                                <input value="" data-role="tagsinput" class="form-control" id="myInput2" type="text">
+                                                                <ul class="list-group" id="myList1"></ul>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
@@ -313,7 +353,18 @@ if (!isset($_SESSION['loginOK'])) {
                                 <a href="../home/textEditor.php" target="_blank"><button type="button" class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i class="mdi mdi-plus"></i>Tạo tài liệu mới</button></a>
 
 
-                                <h4 class="header-title m-b-30"><b>Tài liệu của tôi</b></h4>
+                                <h4 class="header-title m-b-30"><b>
+                                        <?php
+                                        $type = isset($_GET['type']) ? $_GET['type'] : 0;
+                                        if ($type == 0)
+                                            echo "Tài liệu của tôi";
+                                        else 
+                                             if ($type == 1)
+                                            echo "Được chia sẻ với tôi";
+                                        else
+                                            echo "Nhóm tài liệu"
+                                        ?>
+                                    </b></h4>
 
                                 <div class="row">
                                     <?php include 'loadDocIndex.php' ?>
@@ -372,15 +423,20 @@ if (!isset($_SESSION['loginOK'])) {
     <script src="../Assets/js/jquery.app.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
-
     <script>
         $(document).ready(function() {
 
             // Xử lí tìm tên người dùng
-            $(document).click(function() {
-                if (!$(event.target).closest('#myInput').length) {
+            $(document).click(function(e) {
+                if (!$(e.target).closest('#myInput').length) {
                     for (i = 0; i < users.length; i++) {
                         $("#myList li").css('display', 'none');
+                    }
+
+                }
+                if (!$(e.target).closest('#myInput1').length) {
+                    for (i = 0; i < users.length; i++) {
+                        $("#myList1 li").css('display', 'none');
                     }
 
                 }
@@ -415,10 +471,34 @@ if (!isset($_SESSION['loginOK'])) {
             });
 
 
+
+            // Thêm vào nhóm
+            if (group.length) {
+                for (i = 0; i < group.length; i++) {
+                    $("#myList1").append('<li class="list-group-item" style="display:none;">' + group[i].name + '</li>');
+                }
+            }
+
+
+            $('#myList1 li').click(function(e) {
+                $("#myInput1").val('');
+                $('#myInput2').tagsinput('add', $(this).text());
+
+            });
+
+            //$("#input2").tagsinput('items');
+            // mảng lưu thông tin người dùng muốn chia sẻ
+            $("#myInput1").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myList1 li").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+
             // Xử lí tải tệp lên
             $("#btnUpload").click(function(e) {
                 e.preventDefault();
-                //var u_name = $("#u_name").val();
                 var d_name = $("#d_name").val();
                 var d_author = $("#d_author").val();
                 var d_date = $("#d_date").val();
@@ -444,7 +524,12 @@ if (!isset($_SESSION['loginOK'])) {
                             dt.append('share[]', tmp[i]);
                         }
                     }
-
+                    tmp = [];
+                    tmp = $("#myInput2").tagsinput('items');
+                    for (var i = 0; i < tmp.length; i++)
+                        for (var j = 0; j < group.length; j++)
+                            if (tmp[i] == group[i].name)
+                                dt.append('group[]', group[i].id);
                     $.ajax({
                         url: 'upload.php',
                         type: 'post',
@@ -471,7 +556,6 @@ if (!isset($_SESSION['loginOK'])) {
             });
         })
     </script>
-
 
 </body>
 

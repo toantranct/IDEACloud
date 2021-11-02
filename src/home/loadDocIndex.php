@@ -49,7 +49,7 @@
     // if ($group_ID != '') $sql = $sql. " and group_ID = '$group_ID'";
     //  echo $sql;
     $results = $conn->query($sql);
-    if ($results->num_rows > 0) {
+    if ($results !== false && $results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
             echo ' 
             <div class="col-lg-3 col-xl-2">

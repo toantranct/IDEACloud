@@ -49,12 +49,25 @@ if ($uploadOk == 0) {
   VALUES ('$d_name','$d_author','$d_date','$d_des','$Visi','$file_type','0','$file_name','$row[0]')";
   $res = mysqli_query($conn, $sql);
 
-  // them vao share
   $sql = "select doc_id from  docs where  filename = '$file_name'";
-  // echo $sql;
   $rs = $conn->query($sql);
   $row = $rs->fetch_assoc();
   $doc_id =  $row['doc_id'];
+
+  // them vao nhóm
+  
+  if (isset($group)) {
+    $sqloo = "INSERT INTO group_detail  (doc_ID, group_ID) values ('$doc_id','$group[0]')";
+    for ($i = 1; $i < count($group) - 1; $i++)
+      $sqloo = $sqloo . ", ('$doc_id','$group[$i]')";
+    $sqloo = $sqloo .';';
+    IF ($conn ->query($sqloo) === FALSE) {
+      echo "error add group";
+    }
+  }
+
+
+  // them vao share
   if ($Visi == 1 && count($share) > 0) {
     $sql = "insert into share values ('$doc_id','$share[0]')";
     for ($i = 1; $i < count($share) - 1; $i++)
