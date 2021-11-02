@@ -1,13 +1,36 @@
+<?php
+include '../config.php';
+
+$sql = "select username from users";
+
+$rs = $conn->query($sql);
+
+if ($rs->num_rows >  0) {
+  echo "<script> var users = [];";
+  while ($row = $rs->fetch_assoc()) {
+
+    echo 'users.push(\'' . $row['username'] . '\');';
+  }
+  echo "</script>";
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
-<?php 
+<?php
 // nếu đã đăng nhập và là admin
 // sql kiểm tra admin
-        session_start();
-        if(!isset($_SESSION['loginOK'])){
-          header('location:../login/login.php');
-        }
-     ?>
+// if(!isset($_SESSION['loginOK']))
+// {
+//    header('location:../login/login.php');
+// }
+    session_start();
+    if(!isset($_SESSION['loginOK'])){
+      header('location:../login/login.php');
+    }
+?>
 
 <head>
     <meta charset="utf-8" />
@@ -22,6 +45,8 @@
 
     <!-- Toastr css -->
     <link href="../Assets/plugins/jquery-toastr/jquery.toast.min.css" rel="stylesheet" />
+    <!-- Plugins css-->
+    <link href="../Assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
 
     <!-- App css -->
     <link href="../Assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -353,7 +378,7 @@
                                                     <h4 class="modal-title">Thêm tài liệu</h4>
                                                 </div>
                                                 <div class="modal-body p-4">
-                                                    <input type="text" id="u_name" name="u_name"
+                                                <input type="text" id="u_name" name="u_name"
                                                         value="<?php echo ($_SESSION["loginOK"]) ?>" hidden="hidden">
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -408,9 +433,25 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row" id="userShare" style="display:none;">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="d_des" class="control-label">Chọn người được
+                                                                    chia sẻ</label>
+                                                                <input class="form-control" id="myInput" type="text"
+                                                                    placeholder="Search...">
+                                                                <input value="" data-role="tagsinput"
+                                                                    class="form-control" id="input2" type="text">
+                                                                <ul class="list-group" id="myList"></ul>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
+
                                                                 Chọn file để tải lên:
                                                                 <input type="file" name="fileToUpload"
                                                                     id="fileToUpload">
@@ -439,30 +480,31 @@
 
                                 <?php
 
-                                // if (isset($_POST['submit'])) {
-                                //     $Name = ($_POST['d_name']);
-                                //     $Author = ($_POST['d_author']);
-                                //     $Date = ($_POST['d_date']);
-                                //     $Des = ($_POST['d_des']);
-                                //     $Visi = ($_POST['dropdown1']);
-                                //     $Upld = basename($_FILES["fileToUpload"]["name"]);
-                                //     $sql = "insert into docs 
-                                //                 (`doc_name`, `doc_author`, `doc_date`, `description`, `visibility`, 'filename')
-                                //                 values ('$Name', '$Author', '$Date', '$Des', '$Visi', '$Upld' )";
-                                //     $res = mysqli_query($conn, $sql);
-                                //     if ($res == true) {
-                                //         header('location:test.php');
-                                //     } else {
-                                //         echo "Sửa thất bại";
-                                //     }
-                                // }
-                                ?>
+                // if (isset($_POST['submit'])) {
+                //     $Name = ($_POST['d_name']);
+                //     $Author = ($_POST['d_author']);
+                //     $Date = ($_POST['d_date']);
+                //     $Des = ($_POST['d_des']);
+                //     $Visi = ($_POST['dropdown1']);
+                //     $Upld = basename($_FILES["fileToUpload"]["name"]);
+                //     $sql = "insert into docs 
+                //                 (`doc_name`, `doc_author`, `doc_date`, `description`, `visibility`, 'filename')
+                //                 values ('$Name', '$Author', '$Date', '$Des', '$Visi', '$Upld' )";
+                //     $res = mysqli_query($conn, $sql);
+                //     if ($res == true) {
+                //         header('location:test.php');
+                //     } else {
+                //         echo "Sửa thất bại";
+                //     }
+                // }
+                ?>
                                 <!-- Button trigger modal -->
 
                                 <button type="button"
                                     class="btn btn-custom btn-rounded w-md waves-effect waves-light pull-right"
                                     data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
                                         class=" mdi mdi-upload"></i>Tải tệp lên</button>
+
                                 <a href="../home/textEditor.php" target="_blank"><button type="button"
                                         class="btn btn-primary btn-rounded w-md waves-effect waves pull-right"><i
                                             class="mdi mdi-plus"></i>Tạo tài liệu mới</button></a>
@@ -571,8 +613,6 @@
     </div>
     <!-- END wrapper -->
 
-
-
     <!-- jQuery  -->
     <script src="../Assets/js/jquery.min.js"></script>
     <script src="../Assets/js/popper.min.js"></script>
@@ -588,13 +628,59 @@
     <script src="../Assets/plugins/jquery-toastr/jquery.toast.min.js" type="text/javascript"></script>
     <!-- <script src="../Assets/pages/jquery.toastr.js" type="text/javascript"></script>   -->
 
+
+    <!-- Bootstrap tagsinput -->
+    <script src="../Assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+
     <!-- App js -->
     <script src="../Assets/js/jquery.core.js"></script>
     <script src="../Assets/js/jquery.app.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+
     <script>
     $(document).ready(function() {
+
+        // Xử lí tìm tên người dùng
+        $(document).click(function() {
+            if (!$(event.target).closest('#myInput').length) {
+                for (i = 0; i < users.length; i++) {
+                    $("#myList li").css('display', 'none');
+                }
+
+            }
+        });
+
+        for (i = 0; i < users.length; i++) {
+            $("#myList").append('<li class="list-group-item" style="display:none;">' + users[i] + '</li>');
+        }
+
+        $('#myList li').click(function(e) {
+            $("#myInput").val('');
+            $('#input2').tagsinput('add', $(this).text());
+
+        });
+
+        //$("#input2").tagsinput('items');
+        // mảng lưu thông tin người dùng muốn chia sẻ
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myList li").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
         // $("#form-upload").submit(function(e) {
+
+        //Hiển thị div tìm tên người dùng
+        $("#dropdown1").change(function() {
+            if (this.value == '1')
+                $("#userShare").show();
+            else
+                $('#userShare').hide();
+        });
+
+
+        // Xử lí tải tệp lên
         $("#btnUpload").click(function(e) {
             e.preventDefault();
             var u_name = $("#u_name").val();
@@ -616,6 +702,10 @@
                 }, 4000);
             } else {
                 var dt = new FormData($('form')[1]);
+                // if (visi == 1)
+                //   for (var i = 0; i < users.length; i++) {
+                //     dt.append('users[]', users[i]);
+                //   }
                 $.ajax({
                     url: 'upload.php',
                     type: 'post',
@@ -642,6 +732,7 @@
         });
     })
     </script>
+
 
 </body>
 
