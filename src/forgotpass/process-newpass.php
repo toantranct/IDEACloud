@@ -15,9 +15,13 @@ if(isset($_POST['btnsubmit'])){
         $result_2 = mysqli_query($conn,$sql_2);
         
         if($result_2 > 0){
-            echo 'Mật khẩu đã được thay đổi';
+            echo '<script language="javascript">';
+            echo 'alert("Mật khẩu đã được đặt lại");window.location("../login/login.php");';
+            echo '</script>';
         }
     }else{
-       echo 'Lỗi.';
+        echo '<script language="javascript">';
+        echo 'alert("Lỗi"); history.back();';
+        echo '</script>';
     }
     ?>
