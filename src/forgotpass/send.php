@@ -23,8 +23,8 @@
 
             $mail->addAddress($recipient);
             $mail->isHTML(true);
-            $mail->Subject = '[localhost] Kích hoạt tài khoản'; 
-            $mail->Body = 'Nhấp vào đây để kích hoạt: <a href="http://localhost:88/IDEACloud/src/forgotpass/newpass.php?email='.$recipient.'&code='.$code.'">Nhấp vào đây</a>';
+            $mail->Subject = '[localhost] Lấy lại mật khẩu'; 
+            $mail->Body = 'Nhấp vào đây để lấy lại: <a href="http://localhost:88/IDEACloud/src/forgotpass/newpass.php?email='.$recipient.'&code='.$code.'">Nhấp vào đây</a>';
             if($mail->send()){
                 echo 'Vui lòng vào email lấy lại mật khẩu!';
             }

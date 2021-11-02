@@ -30,18 +30,33 @@
                                         </div>
                                         <div class="form-outline form-white mb-4">
                                             Mật khẩu Mới:
-                                            <input type="password" id="password" name="password1"
+                                            <input type="password" id="password1" name="password1"
                                                 class="form-control form-control-lg" />
                                         </div>
 
                                         <div class="form-outline form-white mb-4">
-                                            Nhập Lại Mật Khẩu Mới:
-                                            <input type="password" id="password" name="password2"
-                                                class="form-control form-control-lg" />
+                                            Nhập lại mật khẩu:
+                                            <input onkeyup='checkpass();' type="password" id="password2"
+                                                name="password2" class="form-control form-control-lg" />
+                                            <span id="check"></span>
                                         </div>
-                                        <button class="btn btn-outline-primary btn-secondary text-white px-5"
-                                            type="submit" name="submit">Tiếp theo</button>
+
+                                        <br>
+                                        <button class="btn btn-outline-primary  px-5" disabled type="submit"
+                                            id="btnsubmit" name="btnsubmit">Đăng Ký</button>
                                     </form>
+                                    <script>
+                                    function checkpass() {
+                                        if (document.getElementById('password1').value == document.getElementById(
+                                                'password2').value) {
+                                            document.getElementById('check').innerHTML = "";
+                                            document.getElementById('btnsubmit').disabled = false;
+                                        } else {
+                                            document.getElementById('check').innerHTML = "Mật khẩu không trùng";
+                                            document.getElementById('btnsubmit').disabled = true;
+                                        }
+                                    }
+                                    </script>
                                 </div>
                             </div>
                         </div>

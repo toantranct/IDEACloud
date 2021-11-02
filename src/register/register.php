@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div style="background-image: url('../../img/nenlogin.jpg'); background-repeat: no-repeat">
+    <div style="background-image: url('../img/nenlogin.jpg'); background-repeat: no-repeat">
         <section class="vh-100 gradient-custom">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
