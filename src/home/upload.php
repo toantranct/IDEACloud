@@ -2,9 +2,6 @@
 include '../config.php';
 extract($_POST);
 
-
- echo $users;
-
 //  Cú pháp lấy dữ liệu từ input : $name 
 $target_dir = "../documents/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
