@@ -3,6 +3,7 @@
     // Hiển thị return
      $parent = isset($_GET['parent']) ? $_GET['parent'] : '';
      $group_ID = isset($_GET['id'])? $_GET['id'] : '';
+     $user_ID = "";
     
 
     // load return
@@ -63,7 +64,7 @@
     }
     
 
-    // load tệp
+    // load tệp -- 
     $sql = "select DISTINCT doc_name, doc_author, doc_date, description, visibility, type_file, type, filename 
              from docs, group_detail, doc_groups
               where docs.doc_ID = group_detail.doc_ID and group_detail.group_ID = doc_groups.group_ID ";
