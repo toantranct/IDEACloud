@@ -1,5 +1,6 @@
 <?php
 include '../config.php';
+session_start();
 extract($_POST);
 // echo $d_name;
 // echo $d_des;
@@ -13,7 +14,7 @@ require_once 'html_doc.php';
 // Initialize class 
 $htd = new HTML_TO_DOC();
 
-$u_name =  ($_POST['u_name']);
+$u_name =  $_SESSION['loginOK'];
 $res2 = mysqli_query($conn, "select * from users where username = '$u_name'");
 $row = mysqli_fetch_row($res2);
 
