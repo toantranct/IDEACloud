@@ -1,3 +1,11 @@
+<?php 
+// nếu đã đăng nhập và là admin
+// sql kiểm tra admin
+            if(!isset($_SESSION['loginOK']))
+            {
+               header('location:../login/login.php');
+            }
+     ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,12 +27,6 @@
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;">
-<?php 
-            if(isset($_SESSION['login']))
-            {
-               header('location:login.php');
-            }
-     ?>
 <main>
 <!-- tiêu đề danh sách -->
 <div class="container">

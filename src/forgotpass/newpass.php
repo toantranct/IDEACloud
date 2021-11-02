@@ -7,15 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="../Assets/bootstrap5/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <script src="../Assets/bootstrap5/js/boostrap.min.js"></script>
-    <title>Đăng Ký</title>
+    <title>Mật Khẩu Mới</title>
 </head>
 
 <body>
-    <div style="background-image: url('../img/nenlogin.jpg'); background-repeat: no-repeat">
+    <div style="background-image: url('../../img/nenlogin.jpg'); background-repeat: no-repeat">
         <section class="vh-100 gradient-custom">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -25,32 +21,20 @@
 
                                 <div class="mb-md-5 mt-md-4 pb-5">
 
-                                    <h2 class="fw-bold mb-2 text-uppercase">Đăng ký</h2>
-                                    <form class="mx-1 mx-md-4" action="process-register.php" method="post">
-                                        <p class="text-white-50 mb-5">Vui lòng điền đầy đủ thông tin !</p>
-
-                                        <div class="form-outline form-white mb-2">
-                                            Tên tài khoản:
-                                            <input type="text" name="username" class="form-control form-control-lg" />
+                                    <h2 class="fw-bold mb-2 text-uppercase">Mật Khẩu Mới</h2>
+                                    <br><br>
+                                    <form action="process-newpass.php" method="POST" class="text-center">
+                                        <div class="form-outline form-white mb-4">
+                                            <?php  $email=$_GET['email']; ?>
+                                            <input name="email" id="email" value="<?php echo $email;?>" hidden="hidden">
                                         </div>
-                                        <div class="form-outline form-white mb-2">
-                                            Tên đầy đủ:
-                                            <input type="text" name="fullname" class="form-control form-control-lg" />
-                                        </div>
-                                        <div class="form-outline form-white mb-2">
-                                            Email:
-                                            <input type="text" name="email" class="form-control form-control-lg" />
-                                        </div>
-                                        <div class="form-outline form-white mb-2">
-                                            Số điện thoại:
-                                            <input type="text" name="sdt" class="form-control form-control-lg" />
-                                        </div>
-                                        <div class="form-outline form-white mb-2">
-                                            Mật khẩu:
+                                        <div class="form-outline form-white mb-4">
+                                            Mật khẩu Mới:
                                             <input type="password" id="password1" name="password1"
                                                 class="form-control form-control-lg" />
                                         </div>
-                                        <div class="form-outline form-white mb-2">
+
+                                        <div class="form-outline form-white mb-4">
                                             Nhập lại mật khẩu:
                                             <input onkeyup='checkpass();' type="password" id="password2"
                                                 name="password2" class="form-control form-control-lg" />
@@ -58,7 +42,7 @@
                                         </div>
 
                                         <br>
-                                        <button class="btn btn-secondary text-white px-5" disabled type="submit"
+                                        <button class="btn btn-outline-primary  px-5" disabled type="submit"
                                             id="btnsubmit" name="btnsubmit">Đăng Ký</button>
                                     </form>
                                     <script>
@@ -78,7 +62,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     </div>
 </body>
