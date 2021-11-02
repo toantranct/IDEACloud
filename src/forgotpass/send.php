@@ -26,7 +26,9 @@
             $mail->Subject = '[localhost] Lấy lại mật khẩu'; 
             $mail->Body = 'Nhấp vào đây để lấy lại: <a href="http://localhost:88/IDEACloud/src/forgotpass/newpass.php?email='.$recipient.'&code='.$code.'">Nhấp vào đây</a>';
             if($mail->send()){
-                echo 'Vui lòng vào email lấy lại mật khẩu!';
+            echo '<script language="javascript">';
+            echo 'alert("Vui lòng vào email lấy lại mật khẩu"); history.back();';
+            echo '</script>';
             }
 
         }catch(Exception $e){

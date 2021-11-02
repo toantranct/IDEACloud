@@ -13,7 +13,9 @@
     $result = mysqli_query($conn,$sql);
 
     if(mysqli_num_rows($result) > 0){
-        echo 'Email hoặc Tên tài khoản đã tồn tại';
+        echo '<script language="javascript">';
+        echo 'alert("Email hoặc tài khoản đã tồn tại"); history.back();';
+        echo '</script>';
     }else{
         $pass_hash = password_hash($pass1, PASSWORD_DEFAULT);
         $code = md5(uniqid(rand(), true));

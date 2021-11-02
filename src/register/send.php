@@ -26,7 +26,9 @@
             $mail->Subject = '[localhost] Kích hoạt tài khoản'; 
             $mail->Body = 'Nhấp vào đây để kích hoạt: <a href="http://localhost:88/IDEACloud/src/register/activation.php?email='.$recipient.'&code='.$code.'">Nhấp vào đây</a>';
             if($mail->send()){
-                echo 'Thư đã gửi đi thành công!';
+                echo '<script language="javascript">';
+                echo 'alert("Email kích hoạt đã được gửi đi"); history.back();';
+                echo '</script>';
             }
 
         }catch(Exception $e){

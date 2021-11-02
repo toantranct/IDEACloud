@@ -21,14 +21,20 @@
       else 
       if (password_verify($password_raw,$password_hash) && $status==0){
           $_SESSION['loginOK'] = $username;
-         echo "Tài khoản chưa được kích hoạt";
+          echo '<script language="javascript">';
+          echo 'alert("Tài Khoản chưa được kích hoạt"); history.back();';
+          echo '</script>';
       }
           else{
-            echo 'Mật khẩu không đúng';
+            echo '<script language="javascript">';
+            echo 'alert("Bạn đã nhập sai mật khẩu"); history.back();';
+            echo '</script>';
         }
 
       } else{
-            echo "Tài khoản không đúng";
+        echo '<script language="javascript">';
+        echo 'alert("Bạn đã nhập sai tài khoản"); history.back();';
+        echo '</script>';
         }
 
 ?>
