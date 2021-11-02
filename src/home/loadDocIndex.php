@@ -78,13 +78,14 @@
      else {
         $sql = "select DISTINCT doc_name, doc_author, doc_date, description, visibility, type_file, type, filename 
         from docs, group_detail, doc_groups, users
-         where docs.doc_ID = group_detail.doc_ID and group_detail.group_ID = doc_groups.group_ID  and users.user_id = docs_user_id and users.user_id = '$user_id' ";
+         where docs.doc_ID = group_detail.doc_ID and group_detail.group_ID = doc_groups.group_ID  and users.user_id = docs.user_id and users.user_id = '$user_id' ";
         if ($parent == '')
             $sql  = $sql . ' and parent is null';
         else    $sql  = $sql . " and parent = '$parent'";
         if ($group_ID != '') $sql = $sql. " and doc_groups.group_ID = '$group_ID'";
 
         $sql = $sql. ' order by doc_name';
+        //echo $sql;
      }
   
      if (($type == 2 && $group_ID != "") || $type != 2) {
@@ -93,16 +94,17 @@
              $sql = "select DISTINCT doc_name, doc_author, doc_date, description, visibility, type_file, type, filename 
              from docs, group_detail, doc_groups, users, share
               where users.username = share.username and share.doc_id = docs.doc_id
-              and users.user_id = docs.user_id and users.user_id = '$user_id' ";
+              and users.user_id = '$user_id' ";
              if ($group_ID != '')
               {
-                  $sql = $sql . " docs.doc_ID = group_detail.doc_ID and group_detail.group_ID = doc_groups.group_ID and doc_groups.group_ID = '$group_ID' ";
+                  $sql = $sql . " and docs.doc_ID = group_detail.doc_ID and group_detail.group_ID = doc_groups.group_ID and doc_groups.group_ID = '$group_ID' ";
                   if ($parent == '') 
                           $sql  = $sql . ' and parent is null';
                   else    $sql  = $sql . " and parent = '$parent'";
               }
      
-             $sql = $sql. ' order by doc_name';   
+             $sql = $sql. ' order by doc_name';
+               
              
          }
          $results = $conn->query($sql);
