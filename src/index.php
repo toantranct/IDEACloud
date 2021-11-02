@@ -12,7 +12,7 @@
 
 </head>
 
-<body  style="background-color: darkturquoise;">
+<body>
     <div class="container-fluit">
         <div class="row ">
             <div class="col-md-8 text-center">
