@@ -58,12 +58,38 @@ if ($rs->num_rows >  0) {
 
     </div>
 
-    include 'script.php';
+
+    <!-- jQuery  -->
+    <script src="../Assets/js/jquery.min.js"></script>
+    <script src="../Assets/js/popper.min.js"></script>
+    <script src="../Assets/js/bootstrap.min.js"></script>
+    <script src="../Assets/js/metisMenu.min.js"></script>
+    <script src="../Assets/js/waves.js"></script>
+    <script src="../Assets/js/jquery.slimscroll.js"></script>
+
+    <!-- Toastr js -->
+    <script src="../Assets/plugins/jquery-toastr/jquery.toast.min.js" type="text/javascript"></script>
+
+    <!-- Bootstrap tagsinput -->
+    <script src="../Assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
+
+    <!-- App js -->
+    <script src="../Assets/js/jquery.core.js"></script>
+    <script src="../Assets/js/jquery.app.js"></script>
 
 
 
     <script>
         $(document).ready(function() {
+            //Hiển thị div tìm tên người dùng
+            $("#dropdown1").change(function() {
+                if (this.value == '1')
+                    $("#userShare").show();
+                else
+                    $('#userShare').hide();
+            });
+
+
             $(document).click(function() {
                 if (!$(event.target).closest('#myInput').length) {
                     for (i = 0; i < users.length; i++) {
@@ -80,17 +106,17 @@ if ($rs->num_rows >  0) {
             $('#myList li').click(function(e) {
                 $("#myInput").val('');
                 $('#input2').tagsinput('add', $(this).text());
-                
+
             });
             // console.log($("#input2").tagsinput('items'));
-            // mảng lưu thông tin người dùng muốn chia sẻ
+            // mảng lưu thông tin người dùng
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
                 $("#myList li").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
-            
+
         });
     </script>
 
