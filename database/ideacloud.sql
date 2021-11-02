@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 02, 2021 lúc 01:47 PM
--- Phiên bản máy phục vụ: 10.4.20-MariaDB
--- Phiên bản PHP: 8.0.8
+-- Thời gian đã tạo: Th10 02, 2021 lúc 05:47 PM
+-- Phiên bản máy phục vụ: 10.4.21-MariaDB
+-- Phiên bản PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,6 +40,16 @@ CREATE TABLE `docs` (
   `user_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `docs`
+--
+
+INSERT INTO `docs` (`doc_ID`, `doc_name`, `doc_author`, `doc_date`, `description`, `visibility`, `type_file`, `type`, `filename`, `user_ID`) VALUES
+(48, 'Tài liệu 1', 'Tác giả 1', '2001-12-08', 'Mô tả 1, test', 1, 'docx', 0, 'Report_2021 (1).docx', 9),
+(49, 'Tên 49', 'Tác giả 49', '2001-12-08', 'mô tả 49', 1, 'docx', 1, 'Tài liệu 2.docx', 9),
+(51, 'báo cáo của bố', 'bố', '2001-12-08', 'của bố, cấm zo', 0, 'docx', 0, 'Baocaochuan.docx', 9),
+(52, 'soạn thảo', 'Le Hoang', '2021-11-02', 'mô tả', 0, 'docx', 1, 'soạn thảo.docx', 9);
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +61,16 @@ CREATE TABLE `doc_groups` (
   `group_name` varchar(255) COLLATE utf8_vietnamese_ci NOT NULL,
   `parent` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `doc_groups`
+--
+
+INSERT INTO `doc_groups` (`group_ID`, `group_name`, `parent`) VALUES
+(19, 'Nhóm 1', NULL),
+(20, 'Con 19', 19),
+(21, 'con 20', 20),
+(22, 'Nhóm 2', NULL);
 
 -- --------------------------------------------------------
 
@@ -71,8 +91,15 @@ CREATE TABLE `group_detail` (
 
 CREATE TABLE `share` (
   `doc_id` int(11) NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `share`
+--
+
+INSERT INTO `share` (`doc_id`, `username`) VALUES
+(48, 'toantranct');
 
 -- --------------------------------------------------------
 
@@ -97,7 +124,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fullname`, `username`, `password`, `email`, `SDT`, `status`, `code`, `authorize`) VALUES
-(8, 'Tran Quoc Toan', 'toantranct', '$2y$10$fvTVo2CWxDk.AtJqrMDztuAthO.Z3NXEa94C4ybVUbTb8RF96NUdi', 'mxhios@gmail.com', '0868813162', 1, '30617decbfe67193bef275a7ae0aa90e', 0);
+(8, 'toản chim bé', 'toantranct', '$2y$10$fvTVo2CWxDk.AtJqrMDztuAthO.Z3NXEa94C4ybVUbTb8RF96NUdi', 'toanchimbe@gmail.com', '05821657482', 1, '30617decbfe67193bef275a7ae0aa90e', 1),
+(9, 'Le Hoang', 'huangdz', '$2y$10$U4HIZ1YLFKyYIhrKsQJKlu7IHKL7wSe4OsU3iyoLPf8mnoavmSgb2', 'hoangoku@gmail.com', '0582773218', 1, '70616ef93a6c144a6346476ef5f4a6f0', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -144,19 +172,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `docs`
 --
 ALTER TABLE `docs`
-  MODIFY `doc_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `doc_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT cho bảng `doc_groups`
 --
 ALTER TABLE `doc_groups`
-  MODIFY `group_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `group_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
