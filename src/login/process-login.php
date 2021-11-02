@@ -1,10 +1,9 @@
 <?php
-    session_start();
+  session_start();
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
         $password_raw = $_POST['password'];
     }
-    
     include('../config.php');
     $sql="select * from users where username='$username'";
     $result=mysqli_query($conn,$sql);
@@ -14,14 +13,12 @@
         $status=$row['status'];
         $level=$row['authorize'];
         //ktra mk và kích hoạt
-        if(password_verify($password_raw,$password_hash) && $status==1 && $level==0){
+        if(password_verify($password_raw,$password_hash) && $status==1){ 
+          if ($level == 1) $_SESSION['admin'] = true;
           $_SESSION['loginOK'] = $username;
           header('Location:../home/index.php');
       }
-      if(password_verify($password_raw,$password_hash) && $status==1 && $level==1){
-        $_SESSION['loginOK'] = $username;
-        header('Location:../admin/index.php');
-      }
+      else 
       if (password_verify($password_raw,$password_hash) && $status==0){
           $_SESSION['loginOK'] = $username;
          echo "Tài khoản chưa được kích hoạt";

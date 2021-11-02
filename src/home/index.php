@@ -1,38 +1,21 @@
-<?php
-include '../config.php';
-
-$sql = "select username from users";
-
-$rs = $conn->query($sql);
-
-if ($rs->num_rows >  0) {
-  echo "<script> var users = [];";
-  while ($row = $rs->fetch_assoc()) {
-
-    echo 'users.push(\'' . $row['username'] . '\');';
-  }
-  echo "</script>";
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 <?php
-// nếu đã đăng nhập và là admin
-// sql kiểm tra admin
-// if(!isset($_SESSION['loginOK']))
-// {
-//    header('location:../login/login.php');
-// }
-    session_start();
-    if(!isset($_SESSION['loginOK'])){
-      header('location:../login/login.php');
-    }
+session_start();
+if (!isset($_SESSION['loginOK'])) {
+    header('location:../login/login.php');
+}
+
+include '../config.php';
+$sql = "select * from users where username = '".$_SESSION['loginOK']."'";
+$rs = $conn->query($sql);
+if ($rs !== false && $rs->num_rows > 0 ){
+    $dataUser = $rs->fetch_assoc();
+}
 ?>
 
 <head>
+
     <meta charset="utf-8" />
     <title>IDEA Cloud</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -61,6 +44,35 @@ if ($rs->num_rows >  0) {
 
 <body>
 
+    <?php
+    include '../config.php';
+
+    $sql = "select username from users";
+
+    $rs = $conn->query($sql);
+
+    if ($rs !== false && $rs->num_rows >  0) {
+        echo "<script> var users = [];";
+        while ($row = $rs->fetch_assoc()) {
+            echo 'users.push(\'' . $row['username'] . '\');';
+        }
+    }
+    $sql = "select group_id, group_name from doc_groups";
+    $rs = $conn->query($sql);
+
+    echo "var group = [];";
+
+    if ($rs !== false && $rs->num_rows >  0) {
+
+        while ($row = $rs->fetch_assoc()) {
+            echo 'group.push({id: \'' . $row['group_id'] . '\', name : \'' . $row['group_name'] . '\'});';
+        }
+    }
+    echo "</script>";
+    ?>
+
+
+
     <!-- Begin page -->
     <div id="wrapper">
 
@@ -87,8 +99,15 @@ if ($rs->num_rows >  0) {
                         <img src="../Assets/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme"
                             class="rounded-circle img-fluid">
                     </div>
-                    <h5><a href="#">Trần Quốc Toản</a> </h5>
-                    <p class="text-muted">Admin</p>
+                    <h5><a href="#"><?php echo $dataUser["fullname"]; ?></a> </h5>
+                    <p class="text-muted">
+                        <?php
+                            if ($dataUser["authorize"] == 1)
+                                echo "Quản trị viên";
+                            else 
+                             echo "Dân quoèn";
+                        ?>
+                    </p>
                 </div>
 
                 <!--- Sidemenu -->
@@ -99,23 +118,23 @@ if ($rs->num_rows >  0) {
                         <!--<li class="menu-title">Navigation</li>-->
 
                         <li>
-                            <a href="index.html">
+                            <a href="index.php">
                                 <i class="mdi mdi-account"></i> <span> Tài liệu của tôi</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="index.html">
+                            <a href="index.php?type=1">
                                 <i class="mdi mdi-account-multiple"></i> <span> Được chia sẻ với tôi</span>
                             </a>
                         </li>
                         <li>
-                            <a href="index.html">
+                            <a href="index.php?type=2">
                                 <i class="mdi mdi-folder-multiple"></i> <span> Nhóm tài liệu</span>
                             </a>
                         </li>
 
-                        <li class="menu-title">Tags</li>
+                        <!-- <li class="menu-title">Tags</li> -->
 
 
                 </div>
@@ -152,148 +171,12 @@ if ($rs->num_rows >  0) {
                         </li>
 
 
-
-                        <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="false" aria-expanded="false">
-                                <i class="fi-bell noti-icon"></i>
-                                <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
-
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear
-                                                    All</small></a> </span>Notification</h5>
-                                </div>
-
-                                <div class="slimscroll" style="max-height: 230px;">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-success"><i
-                                                class="mdi mdi-comment-account-outline"></i></div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin<small
-                                                class="text-muted">1 min ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-info"><i class="mdi mdi-account-plus"></i></div>
-                                        <p class="notify-details">New user registered.<small class="text-muted">5 hours
-                                                ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-danger"><i class="mdi mdi-heart"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small
-                                                class="text-muted">3 days ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-warning"><i
-                                                class="mdi mdi-comment-account-outline"></i></div>
-                                        <p class="notify-details">Caleb Flakelar commented on Admin<small
-                                                class="text-muted">4 days ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-purple"><i class="mdi mdi-account-plus"></i></div>
-                                        <p class="notify-details">New user registered.<small class="text-muted">7 days
-                                                ago</small></p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon bg-custom"><i class="mdi mdi-heart"></i></div>
-                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small
-                                                class="text-muted">13 days ago</small></p>
-                                    </a>
-                                </div>
-
-                                <!-- All-->
-                                <a href="javascript:void(0);"
-                                    class="dropdown-item text-center text-primary notify-item notify-all">
-                                    View all <i class="fi-arrow-right"></i>
-                                </a>
-
-                            </div>
-                        </li>
-
-                        <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="false" aria-expanded="false">
-                                <i class="fi-speech-bubble noti-icon"></i>
-                                <span class="badge badge-custom badge-pill noti-icon-badge">6</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
-
-                                <!-- item-->
-                                <div class="dropdown-item noti-title">
-                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear
-                                                    All</small></a> </span>Chat</h5>
-                                </div>
-
-                                <div class="slimscroll" style="max-height: 230px;">
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-2.jpg"
-                                                class="img-fluid rounded-circle" alt="" /> </div>
-                                        <p class="notify-details">Cristina Pride</p>
-                                        <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next
-                                            meeting</p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-3.jpg"
-                                                class="img-fluid rounded-circle" alt="" /> </div>
-                                        <p class="notify-details">Sam Garret</p>
-                                        <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-4.jpg"
-                                                class="img-fluid rounded-circle" alt="" /> </div>
-                                        <p class="notify-details">Karen Robinson</p>
-                                        <p class="text-muted font-13 mb-0 user-msg">Wow that's great</p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-5.jpg"
-                                                class="img-fluid rounded-circle" alt="" /> </div>
-                                        <p class="notify-details">Sherry Marshall</p>
-                                        <p class="text-muted font-13 mb-0 user-msg">Hi, How are you? What about our next
-                                            meeting</p>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <div class="notify-icon"><img src="../Assets/images/users/avatar-6.jpg"
-                                                class="img-fluid rounded-circle" alt="" /> </div>
-                                        <p class="notify-details">Shawn Millard</p>
-                                        <p class="text-muted font-13 mb-0 user-msg">Yeah everything is fine</p>
-                                    </a>
-                                </div>
-
-                                <!-- All-->
-                                <a href="javascript:void(0);"
-                                    class="dropdown-item text-center text-primary notify-item notify-all">
-                                    View all <i class="fi-arrow-right"></i>
-                                </a>
-
-                            </div>
-                        </li>
-
                         <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
                                 <img src="../Assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span
-                                    class="ml-1">Maxine K <i class="mdi mdi-chevron-down"></i> </span>
+                                    class="ml-1"><?php echo $_SESSION['loginOK']; ?> <i
+                                        class="mdi mdi-chevron-down"></i> </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
                                 <!-- item-->
@@ -302,28 +185,8 @@ if ($rs->num_rows >  0) {
                                 </div>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="fi-head"></i> <span>My Account</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="fi-cog"></i> <span>Settings</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="fi-help"></i> <span>Support</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="fi-lock"></i> <span>Lock Screen</span>
-                                </a>
-
-                                <!-- item-->
                                 <a href="../logout.php" class="dropdown-item notify-item">
-                                    <i class="fi-power"></i><span>Logout</span>
+                                    <i class="fi-power"></i> <span>Logout</span>
                                 </a>
 
                             </div>
@@ -343,7 +206,18 @@ if ($rs->num_rows >  0) {
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">IDEA Cloud</a></li>
                                     <!-- <li class="breadcrumb-item"><a href="#">Pages</a></li> -->
-                                    <li class="breadcrumb-item active">Tài liệu của tôi</li>
+                                    <li class="breadcrumb-item active">
+                                        <?php
+                                        $type = isset($_GET['type']) ? $_GET['type'] : 0;
+                                        if ($type == 0)
+                                            echo "Tài liệu của tôi";
+                                        else 
+                                             if ($type == 1)
+                                            echo "Được chia sẻ với tôi";
+                                        else
+                                            echo "Nhóm tài liệu"
+                                        ?>
+                                    </li>
                                 </ol>
                             </div>
                         </li>
@@ -378,7 +252,7 @@ if ($rs->num_rows >  0) {
                                                     <h4 class="modal-title">Thêm tài liệu</h4>
                                                 </div>
                                                 <div class="modal-body p-4">
-                                                <input type="text" id="u_name" name="u_name"
+                                                    <input type="text" id="u_name" name="u_name"
                                                         value="<?php echo ($_SESSION["loginOK"]) ?>" hidden="hidden">
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -448,6 +322,21 @@ if ($rs->num_rows >  0) {
 
                                                     </div>
 
+                                                    <div class="row" id="groupShare">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="d_des" class="control-label">Thêm vào
+                                                                    nhóm</label>
+                                                                <input class="form-control" id="myInput1" type="text"
+                                                                    placeholder="Search...">
+                                                                <input value="" data-role="tagsinput"
+                                                                    class="form-control" id="myInput2" type="text">
+                                                                <ul class="list-group" id="myList1"></ul>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
@@ -478,26 +367,6 @@ if ($rs->num_rows >  0) {
                                     <!-- end modal upload -->
                                 </form>
 
-                                <?php
-
-                // if (isset($_POST['submit'])) {
-                //     $Name = ($_POST['d_name']);
-                //     $Author = ($_POST['d_author']);
-                //     $Date = ($_POST['d_date']);
-                //     $Des = ($_POST['d_des']);
-                //     $Visi = ($_POST['dropdown1']);
-                //     $Upld = basename($_FILES["fileToUpload"]["name"]);
-                //     $sql = "insert into docs 
-                //                 (`doc_name`, `doc_author`, `doc_date`, `description`, `visibility`, 'filename')
-                //                 values ('$Name', '$Author', '$Date', '$Des', '$Visi', '$Upld' )";
-                //     $res = mysqli_query($conn, $sql);
-                //     if ($res == true) {
-                //         header('location:test.php');
-                //     } else {
-                //         echo "Sửa thất bại";
-                //     }
-                // }
-                ?>
                                 <!-- Button trigger modal -->
 
                                 <button type="button"
@@ -510,77 +379,21 @@ if ($rs->num_rows >  0) {
                                             class="mdi mdi-plus"></i>Tạo tài liệu mới</button></a>
 
 
-                                <h4 class="header-title m-b-30"><b>Tài liệu của tôi</b></h4>
+                                <h4 class="header-title m-b-30"><b>
+                                        <?php
+                                        $type = isset($_GET['type']) ? $_GET['type'] : 0;
+                                        if ($type == 0)
+                                            echo "Tài liệu của tôi";
+                                        else 
+                                             if ($type == 1)
+                                            echo "Được chia sẻ với tôi";
+                                        else
+                                            echo "Nhóm tài liệu"
+                                        ?>
+                                    </b></h4>
 
                                 <div class="row">
-                                    <?php include 'loadDoc.php' ?>
-
-                                    <!--                           
-                                    <div class="col-lg-3 col-xl-2">
-                                        <div class="file-man-box">
-                                            <a class="file-info" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                                <i class="mdi mdi-information"></i>
-
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-left dropdown-menu-animated dropdown-lg">
-
-                                        
-                                                <div class="dropdown-item noti-title">
-                                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"></a> </span>Thông tin tài liệu</h5>
-                                                </div>
-
-                                                <div class="slimscroll" style="max-height: 300px;">
-                                             
-                                                    <p class="dropdown-item notify-item">Tên file: invoice_project.pdf </p>
-                                                    <p class="dropdown-item notify-item">kích thước: 13.2KB </p>
-                                                    <p class="dropdown-item notify-item">Loại file: upload </p>
-                                                    <p class="dropdown-item notify-item ">Ngày tải lên: 29/10/2021 </p>
-                                                    <p class="dropdown-item notify-item ">Thuộc tính: Chỉ mình tôi</p>
-
-
-                                                </div>
-                                            </div>
-
-                                            <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
-                                            <div class="file-img-box">
-                                                <img src="../Assets/images/file_icons/pdf.svg" alt="icon">
-                                            </div>
-                                            <a href="#" class="file-download"><i class="mdi mdi-download"></i> </a>
-                                            <div class="file-man-title">
-                                                <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
-                                                <p class="mb-0"><small>568.8 kb</small></p>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- div thư mục -->
-                                    <!-- <div class="col-lg-3 col-xl-2">
-                                        <div class="file-man-box">
-                                            <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
-                                            <div class="file-img-box" style="font-size: 4rem;">
-                                                <i class="mdi mdi-folder-multiple"></i>
-                                            </div>
-                                            <div class="file-man-title">
-                                                <h5 class="mb-0 text-overflow text-center">Thư mục</h5>
-                                                <p class="mb-0">&nbsp;</p>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- test click -->
-                                    <!-- <div class="col-lg-3 col-xl-2">
-                                        <div class="file-man-box">
-                                            <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
-                                            <div class="file-img-box" style="font-size: 4rem;">
-                                                <a href="<?php echo "/home/test.php?id=9&parent=1" ?>"><i class="mdi mdi-folder-multiple"></i></a>
-                                            </div>
-                                            <div class="file-man-title">
-                                                <h5 class="mb-0 text-overflow text-center">Thư mục</h5>
-                                                <p class="mb-0">&nbsp;</p>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
+                                    <?php include 'loadDocIndex.php' ?>
                                 </div>
 
 
@@ -637,15 +450,20 @@ if ($rs->num_rows >  0) {
     <script src="../Assets/js/jquery.app.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
-
     <script>
     $(document).ready(function() {
 
         // Xử lí tìm tên người dùng
-        $(document).click(function() {
-            if (!$(event.target).closest('#myInput').length) {
+        $(document).click(function(e) {
+            if (!$(e.target).closest('#myInput').length) {
                 for (i = 0; i < users.length; i++) {
                     $("#myList li").css('display', 'none');
+                }
+
+            }
+            if (!$(e.target).closest('#myInput1').length) {
+                for (i = 0; i < users.length; i++) {
+                    $("#myList1 li").css('display', 'none');
                 }
 
             }
@@ -680,10 +498,35 @@ if ($rs->num_rows >  0) {
         });
 
 
+
+        // Thêm vào nhóm
+        if (group.length) {
+            for (i = 0; i < group.length; i++) {
+                $("#myList1").append('<li class="list-group-item" style="display:none;">' + group[i].name +
+                    '</li>');
+            }
+        }
+
+
+        $('#myList1 li').click(function(e) {
+            $("#myInput1").val('');
+            $('#myInput2').tagsinput('add', $(this).text());
+
+        });
+
+        //$("#input2").tagsinput('items');
+        // mảng lưu thông tin người dùng muốn chia sẻ
+        $("#myInput1").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myList1 li").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+
         // Xử lí tải tệp lên
         $("#btnUpload").click(function(e) {
             e.preventDefault();
-            var u_name = $("#u_name").val();
             var d_name = $("#d_name").val();
             var d_author = $("#d_author").val();
             var d_date = $("#d_date").val();
@@ -702,10 +545,19 @@ if ($rs->num_rows >  0) {
                 }, 4000);
             } else {
                 var dt = new FormData($('form')[1]);
-                // if (visi == 1)
-                //   for (var i = 0; i < users.length; i++) {
-                //     dt.append('users[]', users[i]);
-                //   }
+                if (visi == 1) {
+                    var tmp = [];
+                    tmp = $("#input2").tagsinput('items');
+                    for (var i = 0; i < tmp.length; i++) {
+                        dt.append('share[]', tmp[i]);
+                    }
+                }
+                tmp = [];
+                tmp = $("#myInput2").tagsinput('items');
+                for (var i = 0; i < tmp.length; i++)
+                    for (var j = 0; j < group.length; j++)
+                        if (tmp[i] == group[i].name)
+                            dt.append('group[]', group[i].id);
                 $.ajax({
                     url: 'upload.php',
                     type: 'post',
@@ -732,7 +584,6 @@ if ($rs->num_rows >  0) {
         });
     })
     </script>
-
 
 </body>
 
