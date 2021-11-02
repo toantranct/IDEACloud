@@ -12,7 +12,7 @@
     $res = mysqli_query($conn, $sql);
     if($res==true)
    {    
-       header('location:MnUserDoc.php');
+       header('location:index.php');
    }else
    {
        echo "<script>alert('Xoá thất bại');</script>";

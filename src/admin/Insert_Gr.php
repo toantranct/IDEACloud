@@ -11,7 +11,7 @@
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
-    <title>Cập nhật tài liệu</title>
+    <title>Thêm nhóm tài liệu</title>
 </head>
 
 <body style="background: url('https://anhdepfree.com/wp-content/uploads/2018/10/Wallpaper-4K-dep-11.jpg') no-repeat center center fixed;
@@ -28,31 +28,23 @@
     if(!$conn){
         die('Không thể kết nối');
     }
-    
-    $ID = $_GET['iddoc'];
     ?>
 <div class="container">
     <div class="card border-0 shadow my-5">
     <div class="row p-5 col bg-info text-light text-center">
-      <h1>Update Document</h1>
+      <h1>Insert Document's Group</h1>
     </div>
     <div class="row bg-dark">
     <div class="col-md-6 text-light text-center">
     <br><br>
-    <h5>Update From Document ID:<br><br></h5>
-    <h5>Update Name:<br><br></h5>
-    <h5>Update Author:<br><br></h5>
-    <h5>Update Production Date:<br><br></h5>
-    <h5>Update Description:<br><br></h5>  
+    <h5>Insert Group Name:<br><br></h5>
+    <h5>Insert Parent:<br><br></h5>  
     </div>
     <div class="col-md-6">
     <br><br>
     <form action="" method="POST" class="text-left text-light">
-        <h5><?php echo $ID?></h5><br>
         <input type="text" name="name" placeholder="Enter Name"><br><br>
-        <input type="text" name="author" placeholder="Enter Author"><br><br>
-        <input type="date" name="date" placeholder="Enter Production Date"><br><br>
-        <input type="text" name="des" placeholder="Enter Description"><br><br>
+        <input type="number" name="parent" placeholder="0 if don't have parents" min="0"><br><br>
         <input type="submit" name="submit" value="Update" class="btn-info text-light">
         <br><br>
     </form>
@@ -65,15 +57,18 @@
 if(isset($_POST['submit']))  
    {
     $Name = ($_POST['name']);
-    $Author = ($_POST['author']);
-    $Date = ($_POST['date']);
-    $Des = ($_POST['des']);
-    $sql = "Update docs set doc_name = '$Name',
-                            doc_author = '$Author',
-                            doc_date = '$Date',
-                            description = '$Des'
-            where doc_id = '$ID'";
-    $res = mysqli_query($conn, $sql);
+    $Parent = ($_POST['parent']);
+    if($Parent=='0')
+    {
+        $sql = "INSERT INTO `doc_groups`(`group_name`, `parent`) VALUES ('$Name',null)";
+        $res = mysqli_query($conn, $sql);
+    }
+    else
+    {
+        $sql = "INSERT INTO `doc_groups`(`group_name`, `parent`) VALUES ('$Name','$Parent')";
+        $res = mysqli_query($conn, $sql);
+    }
+    
     if($res==true)
    {
        header('location:index.php');
