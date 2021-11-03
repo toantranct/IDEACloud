@@ -15,9 +15,7 @@ if(isset($_POST['btnsubmit'])){
         $result_2 = mysqli_query($conn,$sql_2);
         
         if($result_2 > 0){
-            echo '<script language="javascript">';
-            echo 'alert("Mật khẩu đã được đặt lại");window.location("../login/login.php");';
-            echo '</script>';
+            echo'Mật khẩu đã được thay đổi vui lòng : <a href="http://localhost:88/IDEACloud/src/login/login.php">Đăng nhập</a>';
         }
     }else{
         echo '<script language="javascript">';

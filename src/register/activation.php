@@ -12,9 +12,7 @@ if(isset($_GET['email'])){
         $result_2 = mysqli_query($conn,$sql_2);
 
         if($result_2 > 0){
-            echo '<script language="javascript">';
-            echo 'alert("Tài khoản đã được kích hoạt"); window.location("http://localhost:88/IDEACloud/src/login/login.php");';
-            echo '</script>';
+        echo'Tài khoản đã được kích hoạt: <a href="http://localhost:88/IDEACloud/src/login/login.php">Nhấp vào đây để bắt đầu</a>';
         }
     }else{
         echo '<script language="javascript">';
