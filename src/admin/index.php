@@ -151,7 +151,7 @@
                                         <th scope="col">Mã nhóm tài liệu</th>
                                         <th scope="col">Tên nhóm tài liệu</th>
                                         <th scope="col">Cha</th>
-                                        <th scope="col">Tải về</th>
+                                        <th scope="col">Sửa nhóm</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -172,7 +172,7 @@
                                     // where parent = '$row3["parent"]'";
                                     echo '<td>'.'<h6>'.$row3['parent'].'</h6>'.'</td>';
                                     }
-                                    echo '<td> <a href="#"><i class="fas fa-file-download"></i></a></td>';
+                                    echo '<td> <a href="Upd_Gr.php?idgr='.$row3['group_id'].'"><i class="far fa-edit" style="color:#3bc7ff"></i></a></td>';
                                     echo '</tr>';
                                 }
                             }
