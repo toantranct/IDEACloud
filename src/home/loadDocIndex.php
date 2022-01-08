@@ -66,7 +66,7 @@
         </div>';
         }
     }
-    
+    echo '<div style="display:block; width: 100%"></div>';
 
     // load tệp -- 
     if ($group_ID == "" && $parent == "") {
